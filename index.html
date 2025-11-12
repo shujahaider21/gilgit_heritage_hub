@@ -1,343 +1,915 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gilgit — Home</title>
-  <meta name="description" content="Gilgit-Baltistan: gateway to the Karakoram — home page. Practical visitor info, top sights, itineraries and gallery." />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/css/indexstyle.css" rel="stylesheet">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gilgit — Home</title>
+    <meta
+      name="description"
+      content="Gilgit-Baltistan: gateway to the Karakoram — home page. Practical visitor info, top sights, itineraries and gallery."
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Site CSS (keep or adapt to your existing file) -->
+    <link href="assets/css/indexstyle.css" rel="stylesheet" />
 
-  <style>
-    /* small gallery grid */
-    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; }
-    .gallery-grid img { width:100%; height:100px; object-fit:cover; border-radius:8px; cursor:pointer; }
-    .itinerary ol { padding-left:1.2rem; }
-    .badge-info { background:#D77A61; color:#fff; } /* if using your earlier palette, override as needed */
-    /* card image fix */
-    .card-img-top { height:200px; object-fit:cover; }
-    .img-overview { width:100%; max-height:360px; object-fit:cover; border-radius:8px; }
-    /* small callout */
-    .callout { background:#eff7f6; padding:12px; border-left:4px solid #D77A61; border-radius:6px; }
-  </style>
+    <style>
+      /* small gallery grid */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+      }
+      .gallery-grid img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .itinerary ol {
+        padding-left: 1.2rem;
+      }
+      .badge-info {
+        background: #d77a61;
+        color: #fff;
+      }
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+      .img-overview {
+        width: 100%;
+        max-height: 360px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .callout {
+        background: #eff7f6;
+        padding: 12px;
+        border-left: 4px solid #d77a61;
+        border-radius: 6px;
+      }
 
-  <!-- JSON-LD structured data (TouristDestination) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"TouristDestination",
-    "name":"Gilgit-Baltistan",
-    "description":"A mountain region of Pakistan — gateway to the Karakoram and Himalaya. Top spots include Hunza, Attabad Lake, Deosai and Nanga Parbat.",
-    "image":[
-      "assets/images/hero.jpg",
-      "assets/images/attabadlake.jpg",
-      "assets/images/hunzavalley.jpg"
-    ],
-    "url": "http://example.com/index.html",
-    "containsPlace": [
-      {"@type":"Place","name":"Hunza Valley"},
-      {"@type":"Place","name":"Attabad Lake"},
-      {"@type":"Place","name":"Deosai National Park"}
-    ]
-  }
-  </script>
-</head>
-<body>
-  <!-- NAV -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-      <a class="navbar-brand text-primary" href="index.html">GilgitExplorer</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navmenu">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
-          <li class="nav-item"><a class="nav-link" href="spots.html">Tourist Spots</a></li>
-          <li class="nav-item"><a class="nav-link" href="food.html">Food & Culture</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact / Map</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+      /* NEW: site navigation cards */
+      .site-nav {
+        margin: 2.25rem 0;
+      }
+      .site-nav-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+        align-items: stretch;
+      }
+      .site-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(34, 56, 67, 0.06);
+        transition: transform 0.16s ease, box-shadow 0.16s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .site-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(34, 56, 67, 0.12);
+      }
+      .site-card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+      .site-card .card-body {
+        padding: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(255, 255, 255, 0.98)
+        );
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .site-card h5 {
+        margin: 0;
+        font-weight: 700;
+        color: #223843;
+      }
+      .site-card p {
+        margin: 6px 0 0;
+        color: #5f6368;
+        font-size: 0.92rem;
+      }
+      .site-card a {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        text-indent: -9999px; /* full-card link for accessibility */
+      }
 
-  <!-- HERO: uses local hero.jpg for clarity -->
-  <header class="hero" style="background-image:linear-gradient(180deg, rgba(11,61,46,0.55), rgba(2,20,22,0.25)), url('assets/images/homehero.jpg'); background-size:cover; background-position:center;">
-    <div class="container py-5">
-      <div class="row align-items-center">
-        <div class="col-lg-7">
-          <div class="card-glow p-4">
-            <h1 class="display-5 fw-bold">Welcome to Gilgit-Baltistan</h1>
-            <p class="lead">Gateway to towering peaks, turquoise lakes, and rich mountain culture — perfect for trekking, photography and cultural exploration.</p>
-            <div class="mt-3">
-              <a class="btn btn-accent me-2" href="spots.html">Top Spots</a>
-              <a class="btn btn-outline-accent" href="contact.html">Plan Your Trip</a>
-              <a class="btn btn-link text-white" href="#itinerary">Sample Itinerary</a>
-            </div>
-          </div>
-        </div>
+      /* small responsive tweak for sidebar spacing */
+      @media (max-width: 991px) {
+        .img-overview {
+          max-height: 260px;
+        }
+      }
 
-        <div class="col-lg-5 d-none d-lg-block text-white small">
-          <ul class="list-unstyled">
-            <li><strong>Region:</strong> Gilgit-Baltistan</li>
-            <li><strong>Altitude:</strong> 1,200 m — 8,000+ m</li>
-            <li><strong>Best months:</strong> May — Oct</li>
-            <li><strong>Language tip:</strong> Learn simple phrases in Shina & Urdu</li>
+      /* small helpers used elsewhere */
+      .small-muted {
+        color: #6b6f72;
+      }
+      .btn-accent {
+        background: #d77a61;
+        color: #fff;
+        border: none;
+      }
+      .btn-outline-accent {
+        border: 1px solid #d77a61;
+        color: #fff;
+        background: transparent;
+      }
+      .card-glow {
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV (same across all pages) -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
+    >
+      <div class="container">
+        <a class="navbar-brand text-primary fw-bold" href="index.html"
+          >GilgitExplorer</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="touristspots.html">Tourist Spots</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="food.html">Food & Culture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact / Map</a>
+            </li>
           </ul>
         </div>
       </div>
-    </div>
-  </header>
+    </nav>
 
-  <!-- MAIN -->
-  <main class="py-5">
-    <div class="container container-narrow">
-      <div class="row g-4">
-        <div class="col-lg-8">
-          <!-- Overview -->
-          <h2 class="section-title">Why Visit Gilgit?</h2>
-          <p class="small-muted">Gilgit is your doorway to the Karakoram & Greater Himalaya — ideal for multi-day treks, scenic road trips on the Karakoram Highway, cultural exchanges and photography.</p>
-
-          <!-- overview image -->
-          <div class="my-3">
-            <img src="assets/images/gilgit-overview.webp" alt="Panoramic view of Gilgit and mountains" class="img-overview">
+    <!-- HERO -->
+    <header
+      class="hero"
+      style="
+        background-image: linear-gradient(
+            180deg,
+            rgba(11, 61, 46, 0.55),
+            rgba(2, 20, 22, 0.25)
+          ),
+          url('assets/images/homehero.jpg');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="container py-5">
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <div class="card-glow p-4">
+              <h1 class="display-5 fw-bold">Welcome to Gilgit-Baltistan</h1>
+              <p class="lead">
+                Gateway to towering peaks, turquoise lakes, and rich mountain
+                culture — perfect for trekking, photography and cultural
+                exploration.
+              </p>
+              <div class="mt-3">
+                <a class="btn btn-accent me-2" href="touristspots.html"
+                  >Top Spots</a
+                >
+                <a class="btn btn-outline-accent" href="contact.html"
+                  >Plan Your Trip</a
+                >
+                <a class="btn btn-link text-white" href="#itinerary"
+                  >Sample Itinerary</a
+                >
+              </div>
+            </div>
           </div>
 
-          <!-- Expanded informational sections -->
-          <section id="highlights" class="mb-4">
-            <h3>Top Highlights</h3>
-            <ul>
-              <li><strong>Hunza Valley:</strong> Baltit & Altit forts, apricot orchards and stunning viewpoints.</li>
-              <li><strong>Attabad Lake:</strong> Turquoise waters — boating & photo stops.</li>
-              <li><strong>Deosai Plains:</strong> High-altitude plateau with wildflowers and wildlife.</li>
-              <li><strong>Passu Cones & Batura Glacier:</strong> Iconic Karakoram scenery.</li>
-            </ul>
-          </section>
-
-          <!-- Itinerary -->
-          <section id="itinerary" class="itinerary mb-4">
-            <h3>Suggested 5-Day Itinerary</h3>
-            <ol>
-              <li><strong>Day 1:</strong> Arrive Gilgit — rest & local bazaar walk.</li>
-              <li><strong>Day 2:</strong> Drive to Hunza — Baltit Fort & Karimabad exploration.</li>
-              <li><strong>Day 3:</strong> Attabad Lake & Passu viewpoint day trip.</li>
-              <li><strong>Day 4:</strong> Deosai or Astore day excursion (seasonal).</li>
-              <li><strong>Day 5:</strong> Return to Gilgit & departure.</li>
-            </ol>
-            <p class="small-muted">Adjust days for trekking routes or travel time — many drives are scenic but can be slow.</p>
-          </section>
-
-          <!-- Practical Travel Info -->
-          <section id="practical" class="mb-4">
-            <h3>Practical Information</h3>
-            <div class="row">
-              <div class="col-md-6">
-                <h6>Getting there</h6>
-                <p class="small">Flights from Islamabad to Gilgit or long road journey via Karakoram Highway. Book flights early due to limited seats.</p>
-              </div>
-              <div class="col-md-6">
-                <h6>Accommodation</h6>
-                <p class="small">Range from guesthouses and homestays in Hunza to hotels in Gilgit. Peak season: July–Sept; book in advance.</p>
-              </div>
-            </div>
-
-            <div class="row mt-2">
-              <div class="col-md-6">
-                <h6>Health & Altitude</h6>
-                <p class="small">Acclimatise slowly, stay hydrated and avoid strenuous activity on arrival. Seek local advice for high-altitude treks.</p>
-              </div>
-              <div class="col-md-6">
-                <h6>Money & Connectivity</h6>
-                <p class="small">ATMs limited in smaller towns — carry cash. Mobile connectivity is patchy in valleys; pre-download maps.</p>
-              </div>
-            </div>
-          </section>
-
-          <!-- Gallery (thumbnails open modal) -->
-          <section id="gallery" class="mb-4">
-            <h3>Photo Gallery</h3>
-            <div class="gallery-grid mt-2">
-              <img src="assets/images/attabadlake.jpg" alt="Attabad Lake" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/attabadlake.jpg">
-              <img src="assets/images/hunzavalley.jpg" alt="Hunza Valley" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/hunzavalley.jpg">
-              <img src="assets/images/passucones.jpeg" alt="Passu Cones" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/passu.jpg">
-              <img src="assets/images/deosaiplains.jpeg" alt="Deosai Plains" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/deosai.jpg">
-              <img src="assets/images/nangaparbat.jpeg" alt="Nanga Parbat" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/nanga.jpg">
-              <img src="assets/images/photogalleryimg1.jpeg" alt="Local food" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/food.jpg">
-              <img src="assets/images/photogalleryimage2.jpeg" alt="Local bazaar" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/bazaar.jpg">
-              <img src="assets/images/photgalleryimage3.jpeg" alt="Gilgit overview" data-bs-toggle="modal" data-bs-target="#imgModal" data-src="assets/images/gilgit-overview.jpg">
-            </div>
-            
-          </section>
-
-          <!-- FAQ -->
-<section id="faq" class="mb-4">
-  <h3>Frequently Asked Questions</h3>
-  <div class="accordion" id="faqAccordion">
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="faqOne">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-          Do I need permits?
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-        <div class="accordion-body small">
-          Most tourists do not require special permits for main valleys like Hunza or Skardu, but some treks near borders may need NOC (No Objection Certificates). Always confirm with local authorities or your tour operator.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="faqTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-          Is it safe to travel?
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-        <div class="accordion-body small">
-          Gilgit-Baltistan is generally safe and welcoming. However, mountain roads can be risky during rain or snow, so always travel with an experienced driver and check conditions beforehand.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="faqThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-          What is the best time to visit?
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-        <div class="accordion-body small">
-          The best time is from May to October when the weather is pleasant, mountain passes are open, and fruit orchards are in full bloom.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="faqFour">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-          How do I get to Gilgit?
-        </button>
-      </h2>
-      <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-        <div class="accordion-body small">
-          You can reach Gilgit either by a short one-hour flight from Islamabad (weather permitting) or a scenic 16-hour drive via the Karakoram Highway.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="faqFive">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
-          What kind of food can I find there?
-        </button>
-      </h2>
-      <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-        <div class="accordion-body small">
-          Local dishes like Chapshuro, Mamtu, and Buckwheat bread are popular. Most tourist areas also serve Pakistani and international cuisine.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="faqSix">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
-          Can I use mobile networks and internet easily?
-        </button>
-      </h2>
-      <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-        <div class="accordion-body small">
-          Major towns like Gilgit and Hunza have 4G coverage, but remote valleys may have limited or no connectivity. Carry cash as digital payments are not common everywhere.
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-        </div>
-
-        <!-- Sidebar -->
-        <aside class="col-lg-4">
-          <div class="card p-3 mb-3">
-            <h6 class="mb-2">Quick facts</h6>
-            <ul class="small mb-0">
-              <li>Languages: Shina, Burushaski, Wakhi, Urdu</li>
-              <li>Currency: PKR</li>
-              <li>Time zone: PKT (UTC+5)</li>
+          <div class="col-lg-5 d-none d-lg-block text-white small">
+            <ul class="list-unstyled">
+              <li><strong>Region:</strong> Gilgit-Baltistan</li>
+              <li><strong>Altitude:</strong> 1,200 m — 8,000+ m</li>
+              <li><strong>Best months:</strong> May — Oct</li>
+              <li>
+                <strong>Language tip:</strong> Learn simple phrases in Shina &
+                Urdu
+              </li>
             </ul>
           </div>
-
-          <div class="card p-3 mb-3">
-            <h6 class="mb-2">Downloadable resources</h6>
-            <p class="small mb-2">Packing checklist (altitude-friendly):</p>
-            <a class="btn btn-sm btn-outline-accent" href="assets/images/packing-checklist.pdf" download>Download packing checklist (PDF)</a>
-          </div>
-
-          <div class="card p-3 mb-3 callout">
-            <h6 class="mb-2">Local tip</h6>
-            <p class="small mb-0">Try apricot jam from Hunza — a local specialty. Carry small change for roadside stalls and tea houses.</p>
-          </div>
-
-          <div class="card p-3 mb-3">
-            <h6 class="mb-2">Fact about Gilgit Baltistan</h6>
-            <p class="small mb-0">It is home to some of the world's highest mountain ranges, including the Karakoram, the western Himalayas, the Pamir, and the Hindu Kush. The region contains five of the world's 14 "eight-thousanders" (peaks over 8,000 meters)</p>
-            <div class="mt-3">
-              <img src="assets/images/hunzavalley.jpg" alt="Hunza thumbnail" class="img-fluid rounded">
-            </div>
-          </div>
-
-          <div class="card p-3">
-            <h6 class="mb-2">Map & Contact</h6>
-            <div class="ratio ratio-4x3 mb-2">
-              <iframe src="https://www.google.com/maps?q=Gilgit+Baltistan&output=embed" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <a href="contact.html" class="btn btn-sm btn-accent">Contact local guides</a>
-          </div>
-        </aside>
+        </div>
       </div>
-    </div>
-  </main>
+    </header>
 
-  <!-- FOOTER -->
-  <footer class="mt-5 py-3 bg-light">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div><strong>GilgitExplorer</strong><div class="small-muted">A friendly travel primer</div></div>
-      <div class="small">&copy; <script>document.write(new Date().getFullYear())</script></div>
-    </div>
-  </footer>
+    <!-- MAIN -->
+    <main class="py-5">
+      <div class="container container-narrow">
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <h2 class="section-title">Why Visit Gilgit?</h2>
+            <p class="small-muted">
+              Gilgit is your doorway to the Karakoram & Greater Himalaya — ideal
+              for multi-day treks, scenic road trips, cultural exchanges and
+              photography.
+            </p>
 
-  <!-- Image modal for gallery -->
-  <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content bg-transparent border-0">
-        <div class="modal-body p-0">
-          <img id="modalImage" src="" alt="Gallery enlarge" style="width:100%; border-radius:8px;">
+            <!-- overview image -->
+            <div class="my-3">
+              <img
+                src="assets/images/gilgit-overview.webp"
+                alt="Panoramic view of Gilgit and mountains"
+                class="img-overview"
+              />
+            </div>
+
+            <section id="highlights" class="mb-4">
+              <h3>Top Highlights</h3>
+              <ul>
+                <li>
+                  <strong>Hunza Valley:</strong> Baltit & Altit forts, apricot
+                  orchards and stunning viewpoints.
+                </li>
+                <li>
+                  <strong>Attabad Lake:</strong> Turquoise waters — boating &
+                  photo stops.
+                </li>
+                <li>
+                  <strong>Deosai Plains:</strong> High-altitude plateau with
+                  wildflowers and wildlife.
+                </li>
+                <li>
+                  <strong>Passu Cones & Batura Glacier:</strong> Iconic
+                  Karakoram scenery.
+                </li>
+              </ul>
+            </section>
+
+            <section id="itinerary" class="itinerary mb-4">
+              <h3>Suggested 5-Day Itinerary</h3>
+              <ol>
+                <li>
+                  <strong>Day 1:</strong> Arrive Gilgit — rest & local bazaar
+                  walk.
+                </li>
+                <li>
+                  <strong>Day 2:</strong> Drive to Hunza — Baltit Fort &
+                  Karimabad exploration.
+                </li>
+                <li>
+                  <strong>Day 3:</strong> Attabad Lake & Passu viewpoint day
+                  trip.
+                </li>
+                <li>
+                  <strong>Day 4:</strong> Deosai or Astore day excursion
+                  (seasonal).
+                </li>
+                <li><strong>Day 5:</strong> Return to Gilgit & departure.</li>
+              </ol>
+              <p class="small-muted">
+                Adjust days for trekking routes or travel time — many drives are
+                scenic but can be slow.
+              </p>
+            </section>
+
+            <section id="practical" class="mb-4">
+              <h3>Practical Information</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <h6>Getting there</h6>
+                  <p class="small">
+                    Flights from Islamabad to Gilgit or long road journey via
+                    Karakoram Highway. Book flights early due to limited seats.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Accommodation</h6>
+                  <p class="small">
+                    Range from guesthouses and homestays in Hunza to hotels in
+                    Gilgit. Peak season: July–Sept; book in advance.
+                  </p>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-md-6">
+                  <h6>Health & Altitude</h6>
+                  <p class="small">
+                    Acclimatise slowly, stay hydrated and avoid strenuous
+                    activity on arrival. Seek local advice for high-altitude
+                    treks.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Money & Connectivity</h6>
+                  <p class="small">
+                    ATMs limited in smaller towns — carry cash. Mobile
+                    connectivity is patchy in valleys; pre-download maps.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Gallery -->
+            <section id="gallery" class="mb-4">
+              <h3>Photo Gallery</h3>
+              <div class="gallery-grid mt-2">
+                <img
+                  src="assets/images/photogalleryimg1.jpeg"
+                  alt="Attabad Lake"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/attabadlake.jpg"
+                />
+                <img
+                  src="assets/images/photogalleryimage2.jpeg"
+                  alt="Hunza Valley"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/hunzavalley.jpg"
+                />
+                <img
+                  src="assets/images/photgalleryimage3.jpeg"
+                  alt="Passu Cones"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/passucones.jpg"
+                />
+                <img
+                  src="assets/images/deosaiplains.jpeg"
+                  alt="Deosai Plains"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/deosaiplains.jpg"
+                />
+                <img
+                  src="assets/images/nangaparbat.jpeg"
+                  alt="Nanga Parbat"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/nangaparbat.jpg"
+                />
+                <img
+                  src="assets/images/passucones.jpeg"
+                  alt="Local cuisine"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/food.jpg"
+                />
+                <img
+                  src="assets/images/hunzavalley.jpg"
+                  alt="Local bazaar"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/bazaar.jpg"
+                />
+                <img
+                  src="assets/images/attabadlake.jpg"
+                  alt="Gilgit overview"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imgModal"
+                  data-src="assets/images/gilgit-overview.webp"
+                />
+              </div>
+              <p class="small text-muted mt-2">Click images to enlarge.</p>
+            </section>
+
+            <!-- NEW: Site navigation cards (links to other pages) -->
+            <section id="site-nav" class="site-nav mb-4">
+              <h3>Explore the site</h3>
+              <p class="small text-muted">
+                Quick links to key pages — click any card to go there.
+              </p>
+
+              <div class="site-nav-grid">
+                <!-- History -->
+                <article
+                  class="site-card"
+                  role="article"
+                  aria-labelledby="nav-history"
+                >
+                  <img src="assets/images/altit.jpeg" alt="Altit Fort" />
+                  <div class="card-body">
+                    <h5 id="nav-history">History</h5>
+                    <p>
+                      Discover the region's past — forts, Silk Road heritage and
+                      cultural evolution.
+                    </p>
+                  </div>
+                  <a href="history.html" title="History — Gilgit">History</a>
+                </article>
+
+                <!-- Tourist Spots -->
+                <article
+                  class="site-card"
+                  role="article"
+                  aria-labelledby="nav-spots"
+                >
+                  <img src="assets/images/attabadlake.jpg" alt="Attabad Lake" />
+                  <div class="card-body">
+                    <h5 id="nav-spots">Tourist Spots</h5>
+                    <p>
+                      Top natural and cultural attractions — lakes, valleys and
+                      peaks.
+                    </p>
+                  </div>
+                  <a href="touristspots.html" title="Tourist Spots — Gilgit"
+                    >Tourist Spots</a
+                  >
+                </article>
+
+                <!-- Food & Culture -->
+                <article
+                  class="site-card"
+                  role="article"
+                  aria-labelledby="nav-food"
+                >
+                  <img
+                    src="assets/images/apricot.jpeg"
+                    alt="Apricot jam from Hunza"
+                  />
+                  <div class="card-body">
+                    <h5 id="nav-food">Food & Culture</h5>
+                    <p>
+                      Local dishes, festivals and agricultural traditions of the
+                      region.
+                    </p>
+                  </div>
+                  <a href="food.html" title="Food & Culture — Gilgit"
+                    >Food & Culture</a
+                  >
+                </article>
+
+                <!-- Contact -->
+                <article
+                  class="site-card"
+                  role="article"
+                  aria-labelledby="nav-contact"
+                >
+                  <img src="assets/images/map.jpeg" alt="Contact / map" />
+                  <div class="card-body">
+                    <h5 id="nav-contact">Contact & Map</h5>
+                    <p>
+                      Get in touch with local guides, access maps and plan your
+                      trip.
+                    </p>
+                  </div>
+                  <a href="contact.html" title="Contact — Gilgit">Contact</a>
+                </article>
+              </div>
+            </section>
+
+            <!-- FAQ -->
+            <section id="faq" class="mb-4">
+              <h3>Frequently Asked Questions</h3>
+              <div class="accordion" id="faqAccordion">
+                <!-- 1 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqOne">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                    >
+                      Do I need permits?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Most tourists do not require special permits for main
+                      valleys like Hunza or Skardu, but some treks near borders
+                      may need NOC (No Objection Certificates). Always confirm
+                      with local authorities or your tour operator.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqTwo">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                    >
+                      Is it safe to travel?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Gilgit-Baltistan is generally safe and welcoming. However,
+                      mountain roads can be risky during rain or snow, so always
+                      travel with an experienced driver and check conditions
+                      beforehand.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqThree">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                    >
+                      When is the best time to visit?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      The best months are May to October when the weather is
+                      mild, roads are mostly clear, and high-altitude trekking
+                      is safer. Winter months can be very cold and many roads
+                      may be closed due to snow.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqFour">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                    >
+                      What kind of accommodation is available?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Options range from guesthouses and homestays in Hunza and
+                      Skardu to mid-range hotels in Gilgit. Booking in advance
+                      is recommended during peak season (July–September).
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqFive">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                    >
+                      How do I reach Gilgit?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFive"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      You can fly from Islamabad to Gilgit (most convenient) or
+                      travel via road on the Karakoram Highway. Road trips are
+                      scenic but can be long and bumpy.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqSix">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSix"
+                    >
+                      Is local food safe to eat?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSix"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Yes, local food is generally safe. Stick to freshly cooked
+                      meals, avoid raw street food if unsure, and drink bottled
+                      or boiled water to prevent stomach issues.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqSeven">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSeven"
+                    >
+                      What are the must-see spots?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSeven"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Hunza Valley, Baltit and Altit forts, Attabad Lake, Passu
+                      Cones, Deosai Plains, Nanga Parbat viewpoints, and local
+                      bazaars are highly recommended.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqEight">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseEight"
+                    >
+                      How is mobile connectivity and internet?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseEight"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Mobile networks cover most towns but can be patchy in
+                      remote valleys. Internet is slower outside Gilgit city;
+                      consider offline maps and guides for trekking.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 9 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqNine">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseNine"
+                    >
+                      Are guided tours necessary?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseNine"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Guided tours are recommended for trekking, off-road
+                      excursions, or visits near border areas. For main tourist
+                      routes, you can travel independently but must be cautious
+                      on mountain roads.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 10 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqTen">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTen"
+                    >
+                      What should I pack for a trip to Gilgit?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTen"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body small">
+                      Warm clothing, comfortable trekking shoes, sunscreen,
+                      sunglasses, reusable water bottle, first aid kit, and cash
+                      for remote areas. For summer, light layers are essential;
+                      for winter, heavy jackets and thermals.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <!-- end col-lg-8 -->
+
+          <!-- Sidebar -->
+          <aside class="col-lg-4">
+            <div class="card p-3 mb-3">
+              <h6 class="mb-2">Quick facts</h6>
+              <ul class="small mb-0">
+                <li>Languages: Shina, Burushaski, Wakhi, Urdu</li>
+                <li>Currency: PKR</li>
+                <li>Time zone: PKT (UTC+5)</li>
+              </ul>
+            </div>
+
+            <div class="card p-3 mb-3">
+              <h6 class="mb-2">Packing Checklist</h6>
+              <p class="small mb-2">
+                Altitude-friendly essentials for Gilgit-Baltistan:
+              </p>
+              <ul class="small mb-0">
+                <li>Warm layers (jackets, fleece, thermals)</li>
+                <li>Comfortable trekking shoes / boots</li>
+                <li>Hiking socks & gloves</li>
+                <li>Sunscreen, sunglasses, and hat</li>
+                <li>Reusable water bottle</li>
+                <li>
+                  Basic first aid kit (bandages, painkillers, altitude meds)
+                </li>
+                <li>Flashlight / headlamp with extra batteries</li>
+                <li>Snacks / energy bars for treks</li>
+                <li>Camera / smartphone for photography</li>
+                <li>Cash for small towns & remote areas</li>
+              </ul>
+              <div class="mt-2">
+                <a
+                  class="btn btn-sm btn-outline-accent"
+                  href="assets/images/packing-checklist.pdf"
+                  download
+                  >Download PDF version</a
+                >
+              </div>
+            </div>
+
+            <div class="card p-3 mb-3 callout">
+              <h6 class="mb-2">Local tip</h6>
+              <p class="small mb-0">
+                Try apricot jam from Hunza — a local specialty. Carry small
+                change for roadside stalls and tea houses.
+              </p>
+            </div>
+
+            <div class="card p-3 mb-3">
+              <h6 class="mb-2">Fact about Gilgit Baltistan</h6>
+              <p class="small mb-0">
+                It is home to some of the world's highest mountain ranges,
+                including the Karakoram, the western Himalayas, the Pamir and
+                the Hindu Kush. The region contains five of the world's 14
+                "eight-thousanders" (peaks over 8,000 meters).
+              </p>
+              <div class="mt-3">
+                <img
+                  src="assets/images/hunzavalley.jpg"
+                  alt="Hunza thumbnail"
+                  class="img-fluid rounded"
+                />
+              </div>
+            </div>
+
+            <div class="card p-3">
+              <h6 class="mb-2">Map & Contact</h6>
+              <div class="ratio ratio-4x3 mb-2">
+                <iframe
+                  src="https://www.google.com/maps?q=Gilgit+Baltistan&output=embed"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <a href="contact.html" class="btn btn-sm btn-accent"
+                >Contact local guides</a
+              >
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-5 py-3 bg-light">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div>
+          <strong>GilgitExplorer</strong>
+          <div class="small-muted">A friendly travel primer</div>
+        </div>
+        <div class="small">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Image modal for gallery -->
+    <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-transparent border-0">
+          <div class="modal-body p-0">
+            <img
+              id="modalImage"
+              src=""
+              alt="Gallery enlarge"
+              style="width: 100%; border-radius: 8px"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/main.js"></script>
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
-  <script>
-    // Simple gallery modal logic
-    document.querySelectorAll('.gallery-grid img').forEach(img => {
-      img.addEventListener('click', e => {
-        const src = e.currentTarget.getAttribute('data-src') || e.currentTarget.src;
-        document.getElementById('modalImage').src = src;
+    <script>
+      // Simple gallery modal logic (guarded)
+      document.querySelectorAll(".gallery-grid img").forEach((img) => {
+        img.addEventListener("click", (e) => {
+          const src =
+            e.currentTarget.getAttribute("data-src") || e.currentTarget.src;
+          document.getElementById("modalImage").src = src;
+          const modal = new bootstrap.Modal(
+            document.getElementById("imgModal")
+          );
+          modal.show();
+        });
       });
-    });
 
-    // If you want to prefetch images for smoother modal: optional
-    // const prefetch = ['assets/images/attabadlake.jpg','assets/images/hunzavalley.jpg'];
-    // prefetch.forEach(u=>{ const i=new Image(); i.src=u; });
-  </script>
-</body>
+      // Make site-card keyboard-accessible
+      document.querySelectorAll(".site-card").forEach((card) => {
+        card.tabIndex = 0;
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            const link = card.querySelector("a");
+            if (link) {
+              // follow link (opens same tab)
+              window.location.href = link.getAttribute("href");
+            }
+          }
+        });
+        // allow click anywhere
+        card.addEventListener("click", () => {
+          const link = card.querySelector("a");
+          if (link) window.location.href = link.getAttribute("href");
+        });
+      });
+    </script>
+  </body>
 </html>
