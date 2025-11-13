@@ -147,11 +147,11 @@
       .site-card p { margin:6px 0 0; color:var(--muted); font-size:.92rem; }
       .site-card a { position:absolute; inset:0; z-index:3; text-indent:-9999px; }
 
-      /* Info callout */
+      /* Info callout (updated to use primary as subtle tint) */
       .callout {
-        background: rgba(255,183,3,0.06);
+        background: rgba(11,61,46,0.06);
         padding: 12px;
-        border-left: 4px solid var(--accent);
+        border-left: 4px solid var(--primary);
         border-radius: 6px;
         color: var(--dark);
       }
@@ -164,6 +164,31 @@
 
       /* Map helper */
       .map-wrap iframe{width:100%; height:100%; min-height:320px; border:0; border-radius:8px}
+
+      /* Practical section specific styles */
+      #practical .feature {
+        background: var(--card);
+        border-radius: 10px;
+        padding: 12px;
+        box-shadow: 0 8px 20px rgba(2,20,22,0.06);
+        display:flex;
+        gap:12px;
+        align-items:flex-start;
+      }
+      #practical .feature h6 { margin:0 0 6px 0; color:var(--primary); font-size:1rem; }
+      #practical .feature p { margin:0; color:#243434; font-size:.92rem; }
+      #practical .feature .icon {
+        flex:0 0 36px;
+        width:36px;
+        height:36px;
+        display:inline-grid;
+        place-items:center;
+        border-radius:8px;
+        background: rgba(11,61,46,0.06);
+      }
+      #practical .checklist { list-style:none; padding-left:0; margin:0; color:var(--dark); }
+      #practical .checklist li { margin-bottom:.35rem; font-size:.92rem; color:var(--muted); }
+      #practical .quick-badge { background:var(--primary); color:var(--card); font-weight:600; font-size:.78rem; padding:.15rem .5rem; border-radius:.5rem; }
 
       /* Responsive tweaks */
       @media (max-width: 991px) {
@@ -268,27 +293,97 @@
               <p class="small-muted">Adjust days for trekking routes or travel time — many drives are scenic but can be slow.</p>
             </section>
 
+            <!-- ===== Updated Practical Information (themed) ===== -->
             <section id="practical" class="mb-4">
-              <h3>Practical Information</h3>
-              <div class="row">
-                <div class="col-md-6">
-                  <h6>Getting there</h6>
-                  <p class="small">Flights from Islamabad to Gilgit or long road journey via Karakoram Highway. Book flights early due to limited seats.</p>
+              <h3 class="mb-3">Practical Information <span class="quick-badge" style="margin-left:.5rem;">Quick tips</span></h3>
+
+              <div class="row row-cols-1 row-cols-md-2 g-3 mb-3">
+                <!-- Getting there -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <!-- airplane / road icon -->
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M2 16v-2a4 4 0 0 1 4-4h1l3-5 3 5h4a4 4 0 0 1 4 4v2" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 20h10" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Getting there</h6>
+                      <p class="mb-0">Fly Islamabad → Gilgit for fastest access (limited seats). Scenic road option: Karakoram Highway — allow extra travel time for stops and occasional delays.</p>
+                      <div class="small text-muted" style="margin-top:.35rem;">Tip: book flights 4–6 weeks ahead for peak season.</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <h6>Accommodation</h6>
-                  <p class="small">Range from guesthouses and homestays in Hunza to hotels in Gilgit. Peak season: July–Sept; book in advance.</p>
+
+                <!-- Accommodation -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 11.5L12 4l9 7.5" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 21V12h14v9" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Accommodation</h6>
+                      <p class="mb-0">From homestays in Hunza to mid-range hotels in Gilgit. Peak season (Jul–Sep) fills quickly — reserve early if you have fixed dates.</p>
+                      <div class="small text-muted" style="margin-top:.35rem;">Pro-tip: homestays offer local meals and warm hospitality.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Health & Altitude -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2v10" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 22v-6a6 6 0 0 1 12 0v6" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Health & altitude</h6>
+                      <p class="mb-0">Acclimatise slowly: rest on arrival and avoid heavy exertion for 24–48 hrs. Stay hydrated and carry basic altitude meds if you're prone to AMS.</p>
+                      <div class="small text-muted" style="margin-top:.35rem;">If symptoms persist, descend and seek local medical help.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Money & Connectivity -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="7" width="20" height="14" rx="2" stroke="var(--primary)" stroke-width="1.6" />
+                        <path d="M7 11h10" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Money & connectivity</h6>
+                      <p class="mb-0">ATMs are in larger towns but rare in small villages — carry cash for excursions. Mobile signal is patchy in remote valleys; download offline maps before heading out.</p>
+                      <div class="small text-muted" style="margin-top:.35rem;">Local prepaid SIMs improve coverage in towns.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="row mt-2">
-                <div class="col-md-6">
-                  <h6>Health & Altitude</h6>
-                  <p class="small">Acclimatise slowly, stay hydrated and avoid strenuous activity on arrival. Seek local advice for high-altitude treks.</p>
-                </div>
-                <div class="col-md-6">
-                  <h6>Money & Connectivity</h6>
-                  <p class="small">ATMs limited in smaller towns — carry cash. Mobile connectivity is patchy in valleys; pre-download maps.</p>
+              <!-- Checklist + Callout -->
+              <div class="d-flex flex-column flex-md-row gap-3 align-items-start">
+                <ul class="checklist mb-0" style="min-width:260px;">
+                  <li><strong style="color:var(--primary); display:block; margin-bottom:.35rem;">Packing checklist</strong></li>
+                  <li>Warm layers & waterproof jacket</li>
+                  <li>Good hiking shoes & socks</li>
+                  <li>Sunscreen, sunglasses, hat</li>
+                  <li>Reusable water bottle, snacks & first-aid</li>
+                  <li>Cash for remote areas / small purchases</li>
+                </ul>
+
+                <div class="callout" style="flex:1;">
+                  <strong>Safety note</strong>
+                  <div class="small" style="margin-top:.4rem;">
+                    Mountain weather can change rapidly — check local forecasts and road conditions. For high-altitude treks hire a local guide, share your itinerary, and carry a charged phone / power bank.
+                  </div>
                 </div>
               </div>
             </section>
