@@ -88,6 +88,17 @@
         color: #fff;
       }
 
+      /* NEW: wider header content wrapper (centered) */
+      .hero-inner {
+        width: 100%;
+        max-width: 1400px;     /* <-- increased width */
+        margin: 0 auto;
+        padding: 0 1.25rem;    /* breathing room at edges */
+      }
+      @media (min-width: 1600px) {
+        .hero-inner { max-width: 1600px; }
+      }
+
       /* card-glow: the nicer polished variant (backdrop blur + border) */
       .card-glow {
         background: rgba(255, 255, 255, 0.15);
@@ -309,6 +320,10 @@
         .hero {
           min-height: 44vh;
         }
+        /* keep hero-inner comfortable on smaller screens */
+        .hero-inner {
+          padding: 0 1rem;
+        }
       }
     </style>
   </head>
@@ -366,7 +381,8 @@
         background-position: center;
       "
     >
-      <div class="container py-5">
+      <!-- widened, centered inner wrapper -->
+      <div class="hero-inner py-5">
         <div class="row align-items-center">
           <div class="col-lg-7">
             <div class="card-glow p-4">
@@ -469,10 +485,7 @@
                 </li>
                 <li><strong>Day 5:</strong> Return to Gilgit & departure.</li>
               </ol>
-              <p class="small-muted">
-                Adjust days for trekking routes or travel time — many drives are
-                scenic but can be slow.
-              </p>
+              <p class="small-muted">Adjust days for trekking routes or travel time — many drives are scenic but can be slow.</p>
             </section>
 
             <!-- ===== Updated Practical Information (themed) ===== -->
@@ -834,7 +847,7 @@
               </div>
             </section>
 
-            <!-- FAQ -->
+ <!-- FAQ -->
             <section id="faq" class="mb-4">
               <h3>Frequently Asked Questions</h3>
               <div class="accordion" id="faqAccordion">
