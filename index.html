@@ -91,12 +91,14 @@
       /* NEW: wider header content wrapper (centered) */
       .hero-inner {
         width: 100%;
-        max-width: 1400px;     /* <-- increased width */
+        max-width: 1400px; /* <-- increased width */
         margin: 0 auto;
-        padding: 0 1.25rem;    /* breathing room at edges */
+        padding: 0 1.25rem; /* breathing room at edges */
       }
       @media (min-width: 1600px) {
-        .hero-inner { max-width: 1600px; }
+        .hero-inner {
+          max-width: 1600px;
+        }
       }
 
       /* card-glow: the nicer polished variant (backdrop blur + border) */
@@ -248,8 +250,74 @@
       }
       footer {
         background: var(--dark);
-        color: #dff7ef;
-        padding: 1.5rem 0;
+        color: rgba(223, 247, 239, 0.95); /* soft off-white for body text */
+        padding-top: 3rem;
+        padding-bottom: 1.25rem;
+      }
+
+      /* Footer headings */
+      .footer h5 {
+        font-family: "Playfair Display", serif;
+        color: var(--card);
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      /* Footer links */
+      .footer a {
+        display: block;
+        line-height: 1.8;
+        color: rgba(
+          223,
+          247,
+          239,
+          0.95
+        ); /* match paragraph color for consistency */
+        text-decoration: none;
+      }
+      .footer a:hover,
+      .footer a:focus {
+        color: var(--accent);
+        text-decoration: underline;
+        outline: none;
+      }
+
+      /* Paragraphs in footer */
+      .footer p,
+      .footer .small {
+        line-height: 1.6;
+        margin-bottom: 0;
+        color: rgba(223, 247, 239, 0.92);
+      }
+
+      /* Accent icons */
+      .footer i,
+      .footer .bi {
+        color: var(--accent);
+        font-size: 1.15rem;
+        vertical-align: middle;
+      }
+
+      /* subtle rule */
+      .footer hr {
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+
+      /* layout helper to vertically align columns */
+      .footer .footer-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 220px;
+      }
+
+      /* social links */
+      .footer .social-icons a {
+        font-size: 0.95rem;
+        color: rgba(223, 247, 239, 0.95);
+      }
+      .footer .social-icons a:hover {
+        color: var(--accent);
       }
 
       /* Map helper */
@@ -354,7 +422,7 @@
               <a class="nav-link" href="history.html">History</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="touristspots.html">Tourist Spots</a>
+              <a class="nav-link" href="touristsspots.html">Tourist Spots</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="food.html">Food & Culture</a>
@@ -485,7 +553,10 @@
                 </li>
                 <li><strong>Day 5:</strong> Return to Gilgit & departure.</li>
               </ol>
-              <p class="small-muted">Adjust days for trekking routes or travel time — many drives are scenic but can be slow.</p>
+              <p class="small-muted">
+                Adjust days for trekking routes or travel time — many drives are
+                scenic but can be slow.
+              </p>
             </section>
 
             <!-- ===== Updated Practical Information (themed) ===== -->
@@ -847,7 +918,7 @@
               </div>
             </section>
 
- <!-- FAQ -->
+            <!-- FAQ -->
             <section id="faq" class="mb-4">
               <h3>Frequently Asked Questions</h3>
               <div class="accordion" id="faqAccordion">
@@ -1178,7 +1249,125 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-5 py-3">
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3 mt-5">
+      <div class="container">
+        <div class="row text-start">
+          <!-- 1: About Gilgit -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">About Gilgit</h5>
+            <p class="small">
+              Gilgit is the heart of Gilgit-Baltistan, known for its scenic
+              beauty, mountain ranges, and rich cultural heritage. It’s the
+              gateway to the world’s highest peaks.
+            </p>
+          </div>
+
+          <!-- 2: Explore -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Explore</h5>
+            <ul class="list-unstyled small">
+              <li>
+                <a href="index.html" class="text-decoration-none">Home</a>
+              </li>
+              <li>
+                <a href="history.html" class="text-decoration-none">History</a>
+              </li>
+              <li>
+                <a href="spots.html" class="text-decoration-none"
+                  >Tourist Spots</a
+                >
+              </li>
+              <li>
+                <a href="food.html" class="text-decoration-none"
+                  >Food & Culture</a
+                >
+              </li>
+              <li>
+                <a href="contact.html" class="text-decoration-none"
+                  >Contact / Map</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- 3: Useful Links -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Useful Links</h5>
+            <ul class="list-unstyled small">
+              <li>
+                <a
+                  href="https://www.gilgitbaltistan.gov.pk"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Government of GB</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.pakistan.travel"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Tourism Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.ptdc.com.pk"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >PTDC Website</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Gilgit-Baltistan"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Wikipedia</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- 4: Contact & Social -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Contact & Follow</h5>
+            <p class="small mb-2">
+              📍 Gilgit City, Gilgit-Baltistan <br />
+              📞 +92 355 1234567 <br />
+              ✉️ info@gilgitexplorer.com
+            </p>
+            <div class="social-icons">
+              <a href="#" class="me-3 text-decoration-none"
+                ><i class="bi bi-facebook"></i> Facebook</a
+              >
+              <a href="#" class="me-3 text-decoration-none"
+                ><i class="bi bi-instagram"></i> Instagram</a
+              >
+              <a href="#" class="text-decoration-none"
+                ><i class="bi bi-twitter"></i> Twitter</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-light" />
+        <div class="d-flex justify-content-between align-items-center small">
+          <div><strong>GilgitExplorer</strong></div>
+          <div>
+            ©
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <footer class="mt-5 py-3">
       <div class="container d-flex justify-content-between align-items-center">
         <div>
           <strong>GilgitExplorer</strong>
@@ -1191,7 +1380,7 @@
           </script>
         </div>
       </div>
-    </footer>
+    </footer> -->
 
     <!-- Image modal for gallery -->
     <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">

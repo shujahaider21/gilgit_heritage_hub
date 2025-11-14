@@ -17,18 +17,21 @@
 
     <style>
       /* palette from coolors (applied via CSS variables) */
-      :root{
-        --brand: #223843;   /* deep teal */
+      :root {
+        --brand: #223843; /* deep teal */
         --bg-soft: #eff1f3; /* pale background */
-        --muted: #dbd3d8;   /* subtle neutral */
-        --warm: #d8b4a0;    /* soft warm */
-        --accent: #d77a61;  /* coral accent */
+        --muted: #6b7280; /* adjusted muted to match site */
+        --warm: #d8b4a0; /* soft warm */
+        --accent: #d77a61; /* coral accent */
         --text-dark: #222222;
         --card-bg: #ffffff;
+        --dark: #041e19; /* added so footer can use dark background */
       }
 
       /* override bootstrap text-primary to use our brand */
-      .text-primary { color: var(--brand) !important; }
+      .text-primary {
+        color: var(--brand) !important;
+      }
 
       body {
         font-family: "Inter", sans-serif;
@@ -44,9 +47,13 @@
         color: var(--brand) !important;
         font-weight: 700;
       }
-      .nav-link { color: rgba(0,0,0,0.65); }
+      .nav-link {
+        color: rgba(0, 0, 0, 0.65);
+      }
       .nav-link.active,
-      .nav-link:hover { color: var(--accent) !important; }
+      .nav-link:hover {
+        color: var(--accent) !important;
+      }
 
       /* page headings */
       .section-title {
@@ -58,23 +65,40 @@
         text-align: center;
       }
 
+      .small-muted {
+        color: var(--muted);
+      } /* helper used in footer/other places */
+
       /* cards */
       .card {
         border-radius: 12px;
         background: var(--card-bg);
-        box-shadow: 0 6px 18px rgba(34,56,67,0.06);
-        transition: transform .18s ease, box-shadow .18s ease;
+        box-shadow: 0 6px 18px rgba(34, 56, 67, 0.06);
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
       }
       .card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 12px 30px rgba(34,56,67,0.12);
+        box-shadow: 0 12px 30px rgba(34, 56, 67, 0.12);
       }
-      .card img { height:200px; object-fit:cover; border-top-left-radius:12px; border-top-right-radius:12px; }
+      .card img {
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
 
       /* small text and accents */
-      .card-title { color: var(--brand); font-weight:600; }
-      .card-text { color: rgba(0,0,0,0.65); }
-      h4 { color: var(--brand); margin-top: 1.5rem; }
+      .card-title {
+        color: var(--brand);
+        font-weight: 600;
+      }
+      .card-text {
+        color: rgba(0, 0, 0, 0.65);
+      }
+      h4 {
+        color: var(--brand);
+        margin-top: 1.5rem;
+      }
 
       /* blockquote */
       blockquote {
@@ -83,7 +107,7 @@
         padding-left: 1rem;
         margin: 0;
         color: #495057;
-        background: rgba(215,122,97,0.04);
+        background: rgba(215, 122, 97, 0.04);
         border-radius: 6px;
       }
 
@@ -92,42 +116,74 @@
         background: linear-gradient(90deg, var(--accent), var(--warm));
         color: #fff;
       }
-      .table thead th { border-top: 0; }
-      .table tbody tr td { vertical-align: middle; }
+      .table thead th {
+        border-top: 0;
+      }
+      .table tbody tr td {
+        vertical-align: middle;
+      }
 
       /* gallery / small images */
-      .card .card-body .small { color: rgba(0,0,0,0.6); }
+      .card .card-body .small {
+        color: rgba(0, 0, 0, 0.6);
+      }
 
-      /* footer */
+      /* footer — now uses palette and visible */
       footer {
-        background: var(--brand);
-        color: #fff;
-        padding: 1rem 0;
-        margin-top: 2rem;
+        background: var(--dark);
+        color: rgba(223, 247, 239, 0.96); /* soft off-white for readability */
+        padding: 1.5rem 0;
+      }
+      footer strong {
+        color: var(--card-bg);
+      }
+      footer .small-muted {
+        color: rgba(223, 247, 239, 0.8);
       }
 
       /* responsive: stack cards on small screens */
       @media (max-width: 900px) {
-        .card img { height:160px; }
+        .card img {
+          height: 160px;
+        }
       }
     </style>
   </head>
 
   <body>
     <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
+    >
       <div class="container">
-        <a class="navbar-brand text-primary fw-bold" href="index.html">GilgitExplorer</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <a class="navbar-brand text-primary fw-bold" href="index.html"
+          >GilgitExplorer</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
-            <li class="nav-item"><a class="nav-link" href="touristsspots.html">Tourist Spots</a></li>
-            <li class="nav-item"><a class="nav-link active" href="food.html">Food & Culture</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact / Map</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="touristsspots.html">Tourist Spots</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="food.html">Food & Culture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact / Map</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -136,47 +192,74 @@
     <main class="py-5">
       <div class="container">
         <h2 class="section-title">Food & Agriculture of Gilgit</h2>
-        <p class="text-muted mb-5 text-center">Gilgit's cuisine is hearty and relies on local produce. Agriculture shapes local diets and traditions.</p>
+        <p class="text-muted mb-5 text-center">
+          Gilgit's cuisine is hearty and relies on local produce. Agriculture
+          shapes local diets and traditions.
+        </p>
 
         <!-- Food Section -->
         <h4 class="mb-4">Famous Foods</h4>
         <div class="row g-4">
           <div class="col-md-3">
             <div class="card h-100">
-              <img src="assets/images/chapsh.jpeg" alt="Chapshuro - meat stuffed flatbread" class="card-img-top" />
+              <img
+                src="assets/images/chapsh.jpeg"
+                alt="Chapshuro - meat stuffed flatbread"
+                class="card-img-top"
+              />
               <div class="card-body">
                 <h5 class="card-title">Chapshuro</h5>
-                <p class="card-text small">Meat-stuffed flatbread baked over an open flame.</p>
+                <p class="card-text small">
+                  Meat-stuffed flatbread baked over an open flame.
+                </p>
               </div>
             </div>
           </div>
 
           <div class="col-md-3">
             <div class="card h-100">
-              <img src="assets/images/ghoosht.jpeg" alt="Goshtaba - lamb meatballs in yogurt" class="card-img-top" />
+              <img
+                src="assets/images/ghoosht.jpeg"
+                alt="Goshtaba - lamb meatballs in yogurt"
+                class="card-img-top"
+              />
               <div class="card-body">
                 <h5 class="card-title">Goshtaba</h5>
-                <p class="card-text small">Lamb meatballs cooked in yogurt gravy, served on festivals.</p>
+                <p class="card-text small">
+                  Lamb meatballs cooked in yogurt gravy, served on festivals.
+                </p>
               </div>
             </div>
           </div>
 
           <div class="col-md-3">
             <div class="card h-100">
-              <img src="assets/images/apricot.jpeg" alt="Apricot jam from Hunza" class="card-img-top" />
+              <img
+                src="assets/images/apricot.jpeg"
+                alt="Apricot jam from Hunza"
+                class="card-img-top"
+              />
               <div class="card-body">
                 <h5 class="card-title">Apricot Jam</h5>
-                <p class="card-text small">Sweet jam made from locally grown apricots.</p>
+                <p class="card-text small">
+                  Sweet jam made from locally grown apricots.
+                </p>
               </div>
             </div>
           </div>
 
           <div class="col-md-3">
             <div class="card h-100">
-              <img src="assets/images/gayaling.jpeg" alt="Giyaling bread" class="card-img-top" />
+              <img
+                src="assets/images/gayaling.jpeg"
+                alt="Giyaling bread"
+                class="card-img-top"
+              />
               <div class="card-body">
                 <h5 class="card-title">Giyaling</h5>
-                <p class="card-text small">Traditional local bread made from wheat or barley.</p>
+                <p class="card-text small">
+                  Traditional local bread made from wheat or barley.
+                </p>
               </div>
             </div>
           </div>
@@ -187,13 +270,19 @@
           <div class="col-md-6">
             <div class="card p-3 h-100">
               <h5 class="card-title">Customs & Festivals</h5>
-              <p class="small">Harvest celebrations and local fairs are common. Hospitality is a key cultural value.</p>
+              <p class="small">
+                Harvest celebrations and local fairs are common. Hospitality is
+                a key cultural value.
+              </p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="card p-3 h-100">
               <h5 class="card-title">Local Sayings</h5>
-              <blockquote class="blockquote mb-0 small">"A guest in the house is like a blessing from God — always offer tea and a warm smile."</blockquote>
+              <blockquote class="blockquote mb-0 small">
+                "A guest in the house is like a blessing from God — always offer
+                tea and a warm smile."
+              </blockquote>
             </div>
           </div>
         </div>
@@ -235,37 +324,60 @@
               <div class="row g-3">
                 <div class="col-12 col-md-4">
                   <div class="card h-100">
-                    <img src="assets/images/goat.jpg" alt="Goat farm" class="card-img-top" />
-                    <div class="card-body"><p class="small text-center">Goat Farm</p></div>
+                    <img
+                      src="assets/images/goat.jpg"
+                      alt="Goat farm"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <p class="small text-center">Goat Farm</p>
+                    </div>
                   </div>
                 </div>
 
                 <div class="col-12 col-md-4">
                   <div class="card h-100">
-                    <img src="assets/images/fruit.jpg" alt="Fruit orchard" class="card-img-top" />
-                    <div class="card-body"><p class="small text-center">Fruits Orchard</p></div>
+                    <img
+                      src="assets/images/fruit.jpg"
+                      alt="Fruit orchard"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <p class="small text-center">Fruits Orchard</p>
+                    </div>
                   </div>
                 </div>
 
                 <div class="col-12 col-md-4">
                   <div class="card h-100">
-                    <img src="assets/images/vegetable.jpeg" alt="Vegetable field" class="card-img-top" />
-                    <div class="card-body"><p class="small text-center">Vegetables Field</p></div>
+                    <img
+                      src="assets/images/vegetable.jpeg"
+                      alt="Vegetable field"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <p class="small text-center">Vegetables Field</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </main>
 
-    <footer>
+    <footer class="mt-5 py-3">
       <div class="container d-flex justify-content-between align-items-center">
-        <div><strong style="color:#fff">GilgitExplorer</strong></div>
-        <div class="small" style="color:rgba(255,255,255,0.9);">
-          &copy; <script>document.write(new Date().getFullYear())</script>
+        <div>
+          <strong>GilgitExplorer</strong>
+          <div class="small-muted">A friendly travel primer</div>
+        </div>
+        <div class="small">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
         </div>
       </div>
     </footer>

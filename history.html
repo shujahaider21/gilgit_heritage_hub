@@ -21,15 +21,15 @@
 
     <style>
       /* ------------ color palette (CSS variables) ------------ */
-      :root{
-        --primary: #0b3d2e;    /* glacier green (brand) */
-        --accent:  #ffb703;    /* sunrise amber (accent) */
-        --muted:   #6b7280;    /* muted text */
-        --bg:      #f6fbfc;    /* page background */
-        --card:    #ffffff;    /* card background */
-        --dark:    #041e19;    /* footer / deep tone */
-        --text:    #223843;    /* main text (deep teal) */
-        --glass:   rgba(255,255,255,0.92);
+      :root {
+        --primary: #0b3d2e; /* glacier green (brand) */
+        --accent: #ffb703; /* sunrise amber (accent) */
+        --muted: #6b7280; /* muted text */
+        --bg: #f6fbfc; /* page background */
+        --card: #ffffff; /* card background */
+        --dark: #041e19; /* footer / deep tone */
+        --text: #223843; /* main text (deep teal) */
+        --glass: rgba(255, 255, 255, 0.92);
       }
 
       /* base */
@@ -40,7 +40,10 @@
         overflow-x: hidden;
       }
 
-      h1,h2,h3,h4 {
+      h1,
+      h2,
+      h3,
+      h4 {
         font-family: "Playfair Display", serif;
         color: var(--primary);
       }
@@ -48,32 +51,57 @@
       /* NAVBAR (copied from index + palette) */
       .navbar {
         background: var(--card);
-        box-shadow: 0 6px 18px rgba(10,20,18,0.04);
+        box-shadow: 0 6px 18px rgba(10, 20, 18, 0.04);
       }
-      .navbar-brand { color: var(--primary) !important; font-weight:700; }
-      .nav-link { color: rgba(0,0,0,0.65); }
-      .nav-link:hover { color: var(--accent) !important; }
-      .nav-link.active { color: var(--accent) !important; font-weight:600; }
+      .navbar-brand {
+        color: var(--primary) !important;
+        font-weight: 700;
+      }
+      .nav-link {
+        color: rgba(0, 0, 0, 0.65);
+      }
+      .nav-link:hover {
+        color: var(--accent) !important;
+      }
+      .nav-link.active {
+        color: var(--accent) !important;
+        font-weight: 600;
+      }
 
       /* HERO */
-      .hero-section{
+      .hero-section {
         position: relative;
         height: 55vh;
-        background-image: linear-gradient(180deg, rgba(2,20,22,0.35), rgba(11,61,46,0.15)), url('assets/images/history-hero.jpg');
+        background-image: linear-gradient(
+            180deg,
+            rgba(2, 20, 22, 0.35),
+            rgba(11, 61, 46, 0.15)
+          ),
+          url("assets/images/history-hero.jpg");
         background-size: cover;
         background-position: center;
-        display:flex;
-        align-items:center;
-        justify-content:center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #fff;
-        margin-bottom:2rem;
-        text-align:center;
+        margin-bottom: 2rem;
+        text-align: center;
       }
-      .hero-title { font-size:2.4rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.55); }
-      .hero-section .lead { color: rgba(255,255,255,0.9); }
+      .hero-title {
+        font-size: 2.4rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.55);
+      }
+      .hero-section .lead {
+        color: rgba(255, 255, 255, 0.9);
+      }
 
       /* section title underline */
-      .section-title { text-align:center; margin-bottom:2rem; position:relative; color:var(--primary); }
+      .section-title {
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+        color: var(--primary);
+      }
       .section-title:after {
         content: "";
         position: absolute;
@@ -82,38 +110,97 @@
         transform: translateX(-50%);
         width: 80px;
         height: 4px;
-        background: linear-gradient(90deg,var(--primary),var(--accent));
+        background: linear-gradient(90deg, var(--primary), var(--accent));
         border-radius: 3px;
       }
 
       /* cards and images */
-      .card { border-radius:12px; background:var(--card); box-shadow:0 8px 28px rgba(15,30,22,0.04); border:0; overflow:hidden; }
-      .card-img-top { height:220px; object-fit:cover; }
-      .card-title { color:var(--primary); font-weight:600; }
-      .card-text { color: rgba(0,0,0,0.7); }
+      .card {
+        border-radius: 12px;
+        background: var(--card);
+        box-shadow: 0 8px 28px rgba(15, 30, 22, 0.04);
+        border: 0;
+        overflow: hidden;
+      }
+      .card-img-top {
+        height: 220px;
+        object-fit: cover;
+      }
+      .card-title {
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .card-text {
+        color: rgba(0, 0, 0, 0.7);
+      }
 
       /* timeline */
-      .timeline { position:relative; max-width:1000px; margin:0 auto; padding:1rem 0; }
-      .timeline::after { content:""; position:absolute; width:6px; background:var(--primary); top:0; bottom:0; left:50%; transform: translateX(-50%); }
-      .timeline-item { padding:10px 40px; position:relative; width:50%; box-sizing:border-box; }
-      .timeline-item:nth-child(odd){ left:0; }
-      .timeline-item:nth-child(even){ left:50%; }
-      .timeline-content { padding:20px 30px; background:var(--card); border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+      .timeline {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem 0;
+      }
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background: var(--primary);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+      }
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+      .timeline-content {
+        padding: 20px 30px;
+        background: var(--card);
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      }
 
       /* gallery and features */
-      .bg-light { background: linear-gradient(180deg, var(--bg), #ffffff); }
-      .feature-icon { font-size:2.2rem; color:var(--primary); margin-bottom:0.8rem; }
+      .bg-light {
+        background: linear-gradient(180deg, var(--bg), #ffffff);
+      }
+      .feature-icon {
+        font-size: 2.2rem;
+        color: var(--primary);
+        margin-bottom: 0.8rem;
+      }
 
       /* footer */
-      footer { background:var(--dark); color: #ffffff; padding:3rem 0; margin-top:2rem; }
-      footer a { color: rgba(255,255,255,0.9); text-decoration:none; }
-      footer a:hover { color: var(--accent); }
+      footer {
+        background: var(--dark);
+        color: #dff7ef;
+        padding: 1.5rem 0;
+      }
 
       /* responsive tweaks */
-      @media (max-width: 768px){
-        .hero-title { font-size:1.9rem; }
-        .timeline::after { left: 31px; }
-        .timeline-item { width:100%; padding-left:70px; padding-right:25px; left:0; }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 1.9rem;
+        }
+        .timeline::after {
+          left: 31px;
+        }
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+          left: 0;
+        }
       }
     </style>
   </head>
@@ -123,17 +210,32 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">GilgitExplorer</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="history.html">History</a></li>
-            <li class="nav-item"><a class="nav-link" href="touristsspots.html">Tourist Spots</a></li>
-            <li class="nav-item"><a class="nav-link" href="food.html">Food & Culture</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact / Map</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="history.html">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="touristsspots.html">Tourist Spots</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="food.html">Food & Culture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact / Map</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -143,37 +245,64 @@
     <section class="hero-section">
       <div>
         <h1 class="hero-title">A Journey Through Time — Gilgit History</h1>
-        <p class="lead">From Silk Road routes to hill forts and modern transformations.</p>
+        <p class="lead">
+          From Silk Road routes to hill forts and modern transformations.
+        </p>
       </div>
     </section>
 
     <div class="container">
       <section id="history">
         <h2 class="section-title">Historical Overview</h2>
-        <p class="text-center mb-5">Gilgit-Baltistan has been a crossroads of civilizations, connecting South Asia with Central Asia for centuries. Its strategic location along ancient trade routes has shaped its unique cultural heritage.</p>
+        <p class="text-center mb-5">
+          Gilgit-Baltistan has been a crossroads of civilizations, connecting
+          South Asia with Central Asia for centuries. Its strategic location
+          along ancient trade routes has shaped its unique cultural heritage.
+        </p>
 
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-content">
               <h4>Ancient Era</h4>
-              <p>Buddhism flourished in the region; monasteries and rock carvings show the passage of pilgrims along ancient routes.</p>
-              <img src="assets/images/buddhist-stupa.jpg" alt="Buddhist stupa" class="img-fluid rounded mt-3" />
+              <p>
+                Buddhism flourished in the region; monasteries and rock carvings
+                show the passage of pilgrims along ancient routes.
+              </p>
+              <img
+                src="assets/images/buddhist-stupa.jpg"
+                alt="Buddhist stupa"
+                class="img-fluid rounded mt-3"
+              />
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-content">
               <h4>Medieval Period</h4>
-              <p>Altit and Baltit forts developed as important hilltop strongholds; local dynasties shaped regional architecture.</p>
-              <img src="assets/images/fort-heritage.jpg" alt="Hill fort" class="img-fluid rounded mt-3" />
+              <p>
+                Altit and Baltit forts developed as important hilltop
+                strongholds; local dynasties shaped regional architecture.
+              </p>
+              <img
+                src="assets/images/fort-heritage.jpg"
+                alt="Hill fort"
+                class="img-fluid rounded mt-3"
+              />
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-content">
               <h4>Modern Era</h4>
-              <p>Integration into Pakistan and the arrival of modern infrastructure widened educational and tourism opportunities.</p>
-              <img src="assets/images/modern-gilgit.jpg" alt="Modern Gilgit" class="img-fluid rounded mt-3" />
+              <p>
+                Integration into Pakistan and the arrival of modern
+                infrastructure widened educational and tourism opportunities.
+              </p>
+              <img
+                src="assets/images/modern-gilgit.jpg"
+                alt="Modern Gilgit"
+                class="img-fluid rounded mt-3"
+              />
             </div>
           </div>
         </div>
@@ -181,38 +310,87 @@
 
       <section id="culture" class="bg-light mt-5 p-4 rounded">
         <h2 class="section-title">Culture & Traditions</h2>
-        <p class="text-center mb-4">Experience the vibrant culture, traditional crafts and community festivals.</p>
+        <p class="text-center mb-4">
+          Experience the vibrant culture, traditional crafts and community
+          festivals.
+        </p>
 
         <div class="row g-4">
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/hunza-village.jpg" alt="Hunza village" class="card-img-top" />
+              <img
+                src="assets/images/hunza-village.jpg"
+                alt="Hunza village"
+                class="card-img-top"
+              />
               <div class="card-body">
                 <h5 class="card-title">Hunza Valley</h5>
-                <p class="card-text">Terraced orchards and wooden architecture define Hunza's charm.</p>
-                <a href="touristsspots.html" class="btn btn-sm" style="border:1px solid var(--primary); color:var(--primary); background:transparent;">Explore More</a>
+                <p class="card-text">
+                  Terraced orchards and wooden architecture define Hunza's
+                  charm.
+                </p>
+                <a
+                  href="touristsspots.html"
+                  class="btn btn-sm"
+                  style="
+                    border: 1px solid var(--primary);
+                    color: var(--primary);
+                    background: transparent;
+                  "
+                  >Explore More</a
+                >
               </div>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/traditional-crafts.jpg" alt="Traditional crafts" class="card-img-top" />
+              <img
+                src="assets/images/traditional-crafts.jpg"
+                alt="Traditional crafts"
+                class="card-img-top"
+              />
               <div class="card-body">
                 <h5 class="card-title">Traditional Crafts</h5>
-                <p class="card-text">Embroidery, woodwork and gemstones are local specialties.</p>
-                <a href="touristsspots.html" class="btn btn-sm" style="border:1px solid var(--primary); color:var(--primary); background:transparent;">Explore More</a>
+                <p class="card-text">
+                  Embroidery, woodwork and gemstones are local specialties.
+                </p>
+                <a
+                  href="touristsspots.html"
+                  class="btn btn-sm"
+                  style="
+                    border: 1px solid var(--primary);
+                    color: var(--primary);
+                    background: transparent;
+                  "
+                  >Explore More</a
+                >
               </div>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/festival.jpg" alt="Festival" class="card-img-top" />
+              <img
+                src="assets/images/festival.jpg"
+                alt="Festival"
+                class="card-img-top"
+              />
               <div class="card-body">
                 <h5 class="card-title">Festivals</h5>
-                <p class="card-text">Navroz, polo matches and seasonal fairs celebrate local life.</p>
-                <a href="touristspots.html" class="btn btn-sm" style="border:1px solid var(--primary); color:var(--primary); background:transparent;">Explore More</a>
+                <p class="card-text">
+                  Navroz, polo matches and seasonal fairs celebrate local life.
+                </p>
+                <a
+                  href="touristspots.html"
+                  class="btn btn-sm"
+                  style="
+                    border: 1px solid var(--primary);
+                    color: var(--primary);
+                    background: transparent;
+                  "
+                  >Explore More</a
+                >
               </div>
             </div>
           </div>
@@ -224,12 +402,15 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 mb-4">
-            <h4 style="color:var(--accent)">GilgitExplorer</h4>
-            <p style="color:rgba(255,255,255,0.9)">Your gateway to discovering the majestic beauty and rich culture of Gilgit-Baltistan.</p>
+            <h4 style="color: var(--accent)">GilgitExplorer</h4>
+            <p style="color: rgba(255, 255, 255, 0.9)">
+              Your gateway to discovering the majestic beauty and rich culture
+              of Gilgit-Baltistan.
+            </p>
           </div>
 
           <div class="col-lg-2 col-md-6 mb-4">
-            <h5 style="color:#fff">Quick Links</h5>
+            <h5 style="color: #fff">Quick Links</h5>
             <ul class="list-unstyled">
               <li><a href="index.html">Home</a></li>
               <li><a href="history.html">History</a></li>
@@ -239,8 +420,8 @@
           </div>
 
           <div class="col-lg-3 col-md-6 mb-4">
-            <h5 style="color:#fff">Contact Info</h5>
-            <ul class="list-unstyled" style="color:rgba(255,255,255,0.9)">
+            <h5 style="color: #fff">Contact Info</h5>
+            <ul class="list-unstyled" style="color: rgba(255, 255, 255, 0.9)">
               <li>Gilgit, Pakistan</li>
               <li>+92 123 456 7890</li>
               <li>info@gilgitexplorer.com</li>
@@ -248,9 +429,13 @@
           </div>
         </div>
 
-        <hr style="border-color: rgba(255,255,255,0.06)" />
-        <div class="text-center" style="color:rgba(255,255,255,0.9)">
-          &copy; <script>document.write(new Date().getFullYear())</script> GilgitExplorer. All rights reserved.
+        <hr style="border-color: rgba(255, 255, 255, 0.06)" />
+        <div class="text-center" style="color: rgba(255, 255, 255, 0.9)">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          GilgitExplorer. All rights reserved.
         </div>
       </div>
     </footer>
