@@ -38,30 +38,29 @@
         color: var(--text);
         background-color: var(--bg);
         overflow-x: hidden;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
       }
 
-      h1 {
+      /* headings */
+      h1,
+      .hero-title {
         font-family: "Playfair Display", serif;
-        color: var(--bg);
       }
-      h2,
-      h3,
-      h4 {
-        font-family: "Playfair Display", serif;
-        color: var(--primary);
-      }
+      h1 { color: var(--bg); }
+      h2, h3, h4 { font-family: "Playfair Display", serif; color: var(--primary); }
 
-      /* NAVBAR (copied from index + palette) */
-      /* .navbar {
+      /* NAVBAR */
+      .navbar {
         background: var(--card);
-        box-shadow: 0 6px 18px rgba(10, 20, 18, 0.04);
+        box-shadow: 0 6px 18px rgba(10,20,18,0.04);
       }
-      .navbar-brand { color: var(--primary) !important; font-weight:700; }
-      .nav-link { color: rgba(0,0,0,0.65); }
+      .navbar-brand { color: var(--primary) !important; font-weight:700; font-family: "Playfair Display", serif; }
+      .nav-link { color: rgba(0,0,0,0.65); transition: color .15s ease; }
       .nav-link:hover { color: var(--accent) !important; }
       .nav-link.active { color: var(--accent) !important; font-weight:600; }
 
-      /* HERO */
+      /* HERO - DO NOT TOUCH (kept exactly as original request) */
       .hero-section {
         position: relative;
         height: 55vh;
@@ -123,9 +122,7 @@
         color: var(--primary);
         font-weight: 600;
       }
-      .card-text {
-        color: rgba(0, 0, 0, 0.7);
-      }
+      .card-text { color: rgba(0,0,0,0.7); }
 
       /* timeline */
       .timeline {
@@ -150,17 +147,13 @@
         width: 50%;
         box-sizing: border-box;
       }
-      .timeline-item:nth-child(odd) {
-        left: 0;
-      }
-      .timeline-item:nth-child(even) {
-        left: 50%;
-      }
+      .timeline-item:nth-child(odd) { left: 0; }
+      .timeline-item:nth-child(even) { left: 50%; }
       .timeline-content {
         padding: 20px 30px;
         background: var(--card);
         border-radius: 12px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
       }
 
       /* gallery and features */
@@ -179,30 +172,24 @@
         color: #dff7ef;
         padding: 1.5rem 0;
       }
+      footer h4 { color: var(--accent); }
+      footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+      footer a:hover { color: var(--accent); text-decoration: underline; }
+
+      /* small helpers */
+      .lead-brief { max-width: 880px; margin: 0 auto 1rem; color: rgba(34,56,67,0.85); }
 
       /* responsive tweaks */
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: 1.9rem;
-        }
-        .timeline::after {
-          left: 31px;
-        }
-        .timeline-item {
-          width: 100%;
-          padding-left: 70px;
-          padding-right: 25px;
-          left: 0;
-        }
+      @media (max-width: 992px) {
+        .timeline::after { left: 31px; }
+        .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; left: 0; }
       }
     </style>
   </head>
 
   <body>
     <!-- NAVBAR (same across all pages) -->
-   <nav
-      class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">GilgitExplorer</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
@@ -220,8 +207,7 @@
       </div>
     </nav>
 
-
-    <!-- HERO -->
+    <!-- HERO (intentionally unchanged as requested) -->
     <section class="hero-section">
       <div>
         <h1 class="hero-title">A Journey Through Time — Gilgit History</h1>
@@ -234,17 +220,30 @@
     <div class="container">
       <section id="history">
         <h2 class="section-title">Historical Overview</h2>
-        <p class="text-center mb-5">
-          Gilgit-Baltistan has been a crossroads of civilizations, connecting
-          South Asia with Central Asia for centuries. Its strategic location
-          along ancient trade routes has shaped its unique cultural heritage.
+
+        <!-- brief history (new) -->
+        <p class="lead-brief text-center">
+          Gilgit-Baltistan sits on routes that linked South Asia and Central Asia for millennia.
+          Archaeological remains show Buddhist, Persian and Central Asian influences; later the region
+          was shaped by local hill dynasties, Tibetan contacts and Mughal-era trade. In the 19th and 20th
+          centuries the strategic passes drew imperial interest and modern infrastructure slowly arrived.
+          Today Gilgit-Baltistan preserves layered histories — rock carvings, forts and traditional villages
+          — alongside growing tourism that celebrates its natural and cultural heritage.
         </p>
 
-        <div class="timeline">
+        <p class="text-center mb-5">
+          Gilgit-Baltistan has been a crossroads of civilizations, connecting South Asia with Central Asia for centuries. Its strategic location along ancient trade routes has shaped its unique cultural heritage.
+        </p>
+
+        <div class="timeline mb-5">
           <div class="timeline-item">
             <div class="timeline-content">
               <h4>Ancient Era</h4>
-              <p>Buddhism flourished in the region; monasteries and rock carvings show the passage of pilgrims along ancient routes.</p>
+              <p>
+                Buddhism flourished in the region; monasteries, stupas and rock carvings mark pilgrimage routes
+                and cultural exchange between South and Central Asia.
+              </p>
+              <!-- user will add images; placeholder filename shown -->
               <img src="assets/images/buddha.jpg" alt="Buddhist stupa" class="img-fluid rounded mt-3" />
             </div>
           </div>
@@ -252,16 +251,22 @@
           <div class="timeline-item">
             <div class="timeline-content">
               <h4>Medieval Period</h4>
-              <p>Altit and Baltit forts developed as important hilltop strongholds; local dynasties shaped regional architecture.</p>
-              <img src="assets/images/" alt="Hill fort" class="img-fluid rounded mt-3" />
+              <p>
+                Hill forts such as Altit and Baltit became local seats of power. Architecture and craft traditions
+                developed under regional dynasties and caravan trade.
+              </p>
+              <img src="assets/images/baltitfort.jpg" alt="Baltit Fort" class="img-fluid rounded mt-3" />
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-content">
               <h4>Modern Era</h4>
-              <p>Integration into Pakistan and the arrival of modern infrastructure widened educational and tourism opportunities.</p>
-              <img src="assets/images/" alt="Modern Gilgit" class="img-fluid rounded mt-3" />
+              <p>
+                With the expansion of modern roads and administration in the 20th century, education and tourism expanded,
+                while communities continued to preserve language, crafts and seasonal festivals.
+              </p>
+              <img src="assets/images/moderngilgit.webp" alt="Modern Gilgit" class="img-fluid rounded mt-3" />
             </div>
           </div>
         </div>
@@ -270,52 +275,32 @@
       <section id="culture" class="bg-light mt-5 p-4 rounded">
         <h2 class="section-title">Culture & Traditions</h2>
         <p class="text-center mb-4">
-          Experience the vibrant culture, traditional crafts and community
-          festivals.
+          Experience the vibrant culture, traditional crafts and community festivals.
         </p>
 
         <div class="row g-4">
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/hunza valley.jpg" alt="Hunza village" class="card-img-top" />
+              <img src="assets/images/hunzanew.webp" alt="Hunza village" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">Hunza Valley</h5>
                 <p class="card-text">
-                  Terraced orchards and wooden architecture define Hunza's
-                  charm.
+                  Terraced orchards and traditional timber architecture give Hunza much of its charm.
                 </p>
-                <a
-                  href="touristsspots.html"
-                  class="btn btn-sm"
-                  style="
-                    border: 1px solid var(--primary);
-                    color: var(--primary);
-                    background: transparent;
-                  "
-                  >Explore More</a
-                >
+                <a href="touristsspots.html" class="btn btn-sm" style="border:1px solid var(--primary); color:var(--primary); background:transparent;">Explore More</a>
               </div>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/traditional dress.jpeg" alt="Traditional crafts" class="card-img-top" />
+              <img src="assets/images/traditional dress.webp" alt="Traditional dress" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">Traditional Crafts</h5>
                 <p class="card-text">
-                  Embroidery, woodwork and gemstones are local specialties.
+                  Intricate embroidery, woodworking and local gemstone work are common handicrafts.
                 </p>
-                <a
-                  href="touristsspots.html"
-                  class="btn btn-sm"
-                  style="
-                    border: 1px solid var(--primary);
-                    color: var(--primary);
-                    background: transparent;
-                  "
-                  >Explore More</a
-                >
+                <a href="touristsspots.html" class="btn btn-sm" style="border:1px solid var(--primary); color:var(--primary); background:transparent;">Explore More</a>
               </div>
             </div>
           </div>
@@ -326,18 +311,9 @@
               <div class="card-body">
                 <h5 class="card-title">Festivals</h5>
                 <p class="card-text">
-                  Navroz, polo matches and seasonal fairs celebrate local life.
+                  Navroz, polo and seasonal fairs bring communities together to celebrate food, sport and craft.
                 </p>
-                <a
-                  href="touristsspots.html"
-                  class="btn btn-sm"
-                  style="
-                    border: 1px solid var(--primary);
-                    color: var(--primary);
-                    background: transparent;
-                  "
-                  >Explore More</a
-                >
+                <a href="touristsspots.html" class="btn btn-sm" style="border:1px solid var(--primary); color:var(--primary); background:transparent;">Explore More</a>
               </div>
             </div>
           </div>
@@ -345,44 +321,119 @@
       </section>
     </div>
 
-    <footer>
+        <!-- Footer -->
+    <footer class="footer pt-5 pb-3 mt-5">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-4 mb-4">
-            <h4 style="color: var(--accent)">GilgitExplorer</h4>
-            <p style="color: rgba(255, 255, 255, 0.9)">
-              Your gateway to discovering the majestic beauty and rich culture
-              of Gilgit-Baltistan.
+        <div class="row text-start">
+          <!-- 1: About Gilgit -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">About Gilgit</h5>
+            <p class="small">
+              Gilgit is the heart of Gilgit-Baltistan, known for its scenic
+              beauty, mountain ranges, and rich cultural heritage. It’s the
+              gateway to the world’s highest peaks.
             </p>
           </div>
 
-          <div class="col-lg-2 col-md-6 mb-4">
-            <h5 style="color: #fff">Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="history.html">History</a></li>
-              <li><a href="food.html">Food & Agriculture</a></li>
-              <li><a href="touristsspots.html">Tourist Spots</a></li>
+          <!-- 2: Explore -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Explore</h5>
+            <ul class="list-unstyled small">
+              <li>
+                <a href="index.html" class="text-decoration-none">Home</a>
+              </li>
+              <li>
+                <a href="history.html" class="text-decoration-none">History</a>
+              </li>
+              <li>
+                <a href="spots.html" class="text-decoration-none"
+                  >Tourist Spots</a
+                >
+              </li>
+              <li>
+                <a href="food.html" class="text-decoration-none"
+                  >Food & Agriculture</a
+                >
+              </li>
+              <li>
+                <a href="contact.html" class="text-decoration-none"
+                  >Contact / Map</a
+                >
+              </li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 mb-4">
-            <h5 style="color: #fff">Contact Info</h5>
-            <ul class="list-unstyled" style="color: rgba(255, 255, 255, 0.9)">
-              <li>Gilgit, Pakistan</li>
-              <li>+92 123 456 7890</li>
-              <li>info@gilgitexplorer.com</li>
+          <!-- 3: Useful Links -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Useful Links</h5>
+            <ul class="list-unstyled small">
+              <li>
+                <a
+                  href="https://www.gilgitbaltistan.gov.pk"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Government of GB</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.pakistan.travel"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Tourism Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.ptdc.com.pk"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >PTDC Website</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Gilgit-Baltistan"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Wikipedia</a
+                >
+              </li>
             </ul>
+          </div>
+
+          <!-- 4: Contact & Social -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Contact & Follow</h5>
+            <p class="small mb-2">
+              📍 Gilgit City, Gilgit-Baltistan <br />
+              📞 +92 355 1234567 <br />
+              ✉️ info@gilgitexplorer.com
+            </p>
+            <div class="social-icons">
+              <a href="#" class="me-3 text-decoration-none"
+                ><i class="bi bi-facebook"></i> Facebook</a
+              >
+              <a href="#" class="me-3 text-decoration-none"
+                ><i class="bi bi-instagram"></i> Instagram</a
+              >
+              <a href="#" class="text-decoration-none"
+                ><i class="bi bi-twitter"></i> Twitter</a
+              >
+            </div>
           </div>
         </div>
 
-        <hr style="border-color: rgba(255, 255, 255, 0.06)" />
-        <div class="text-center" style="color: rgba(255, 255, 255, 0.9)">
-          &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          GilgitExplorer. All rights reserved.
+        <hr class="border-light" />
+        <div class="d-flex justify-content-between align-items-center small">
+          <div><strong>GilgitExplorer</strong></div>
+          <div>
+            ©
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
