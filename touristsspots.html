@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GilgitExplorer — Tourist Spots</title>
+
+    <!-- Google Fonts & Bootstrap -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Embedded CSS -->
+    <style>
+      :root {
+        --primary: #0b3d2e; /* glacier green */
+        --accent: #ffb703; /* sunrise amber */
+        --muted: #6b7280;
+        --bg: #f6fbfc;
+        --card: #ffffff;
+        --dark: #041e19;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg);
+        color: var(--dark);
+      }
+
+      /* Navbar */
+      .navbar {
+        font-weight: 600;
+      }
+      .navbar-brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: var(--primary) !important;
+      }
+      .nav-link {
+        margin-right: 10px;
+        transition: all 0.3s ease;
+        color: inherit;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--primary) !important;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: url("./assets/images/wondersofgilgit.jpg") center/cover
+          no-repeat;
+        height: 75vh;
+        position: relative;
+      }
+      .hero-section .overlay {
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      .hero-section .content {
+        position: relative;
+        z-index: 1;
+      }
+      .hero-section h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+      }
+      .hero-section p {
+        font-size: 1.1rem;
+        color: #f1f1f1;
+      }
+
+      /* Section Titles */
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        text-align: center;
+        font-size: 2.2rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+      .small-muted {
+        text-align: center;
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+
+      /* Card Design */
+      .spot-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: var(--card);
+      }
+      .spot-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      .spot-card img {
+        height: 220px;
+        object-fit: cover;
+      }
+      .card-title {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+      .rating {
+        color: var(--accent);
+        font-size: 0.9rem;
+      }
+
+      /* Info Section */
+      .info-section iframe {
+        border-radius: 10px;
+        margin-top: 15px;
+      }
+
+      /* Gallery */
+      .gallery-section img {
+        transition: all 0.3s ease;
+      }
+      .gallery-section img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Tips Section */
+      .tips-section ul {
+        font-size: 1rem;
+        color: var(--dark);
+        line-height: 2;
+      }
+
+      footer {
+        background: var(--dark);
+        color: #dff7ef;
+        padding: 1.5rem 0;
+      }
+
+      @media (max-width: 992px) {
+        .footer .footer-col {
+          min-height: auto;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-section h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">GilgitExplorer</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/touristsspots.html"
+                >Tourist Spots</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="food.html">Food & Agriculture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact / Map</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="hero-section text-center text-white d-flex align-items-center justify-content-center"
+    >
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>Discover the Wonders of Gilgit Baltistan</h1>
+        <p>
+          Snow-capped mountains, turquoise lakes, and timeless culture await
+          you.
+        </p>
+        <a href="#spots" class="btn btn-primary mt-3">Explore Now</a>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="spots" class="py-5">
+      <div class="container">
+        <h2 class="section-title">Top Tourist Spots in Gilgit Baltistan</h2>
+        <p class="small-muted">
+          Explore breathtaking beauty, rich heritage, and thrilling adventures.
+        </p>
+
+        <div class="row g-4">
+          <!-- baltitfort -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card spot-card h-100">
+              <img
+                src="assets/images/baltitfort.jpg"
+                alt="baltitfort"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Baltit Fort</h5>
+                <p class="small">
+                  A blend of ancient charm and stunning landscapes. Visit early
+                  morning for serene views.
+                </p>
+                <p class="rating">⭐ 4.8 / 5</p>
+                <p class="text-muted small">
+                  Timings: 8 AM – 6 PM | Entry: PKR 300
+                </p>
+                <a
+                  href="https://www.google.com/search?q=baltitfort+complete+information&oq=baltitfort+complete&gs_lcrp=EgZjaHJvbWUqCQgDECEYChigATIGCAAQRRg5MgkIARAhGAoYoAEyCQgCECEYChigATIJCAMQIRgKGKABMgkIBBAhGAoYoAHSAQkxMDk1MmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8"
+                  >Visit website for further information</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Attabad -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card spot-card h-100">
+              <img
+                src="assets/images/attabad lake.jpg"
+                alt="Attabad Lake"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Attabad Lake</h5>
+                <p class="small">
+                  Crystal-blue waters ideal for boating and photography. Best at
+                  sunset.
+                </p>
+                <p class="rating">⭐ 4.9 / 5</p>
+                <p class="text-muted small">
+                  Timings: 7 AM – 7 PM | Entry: Free
+                </p>
+                <a
+                  href="https://www.google.com/search?q=attabad+lake+detailed+information&oq=attabad+lake+det&gs_lcrp=EgZjaHJvbWUqBwgCECEYoAEyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRiPAjIHCAUQIRiPAjIHCAYQIRiPAtIBCTE5NzA3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
+                  >Visit website for further information</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Passu -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card spot-card h-100">
+              <img
+                src="assets/images/Passu cones.jpg"
+                alt="Passu Cones"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Passu Cones</h5>
+                <p class="small">
+                  Majestic pointed peaks seen from the Karakoram Highway. A
+                  must-stop photo point.
+                </p>
+                <p class="rating">⭐ 4.7 / 5</p>
+                <p class="text-muted small">
+                  Timings: Open 24 hrs | Entry: Free
+                </p>
+                <a
+                  href="https://www.google.com/search?q=passu+detailed+information&sca_esv=2286498253ea9ec4&sxsrf=AE3TifNGhHVRHq0kvNyFjYbs3kamsESuWQ%3A1762924324368&ei=JBcUabqfFqbOhbIPwoz22Qc&ved=0ahUKEwi6wfrw7OuQAxUmZ0EAHUKGPXsQ4dUDCBE&oq=passu+detailed+information&gs_lp=Egxnd3Mtd2l6LXNlcnAiGnBhc3N1IGRldGFpbGVkIGluZm9ybWF0aW9uMggQABiABBiiBDIFEAAY7wUyCBAAGIAEGKIEMgUQABjvBTIIEAAYgAQYogRIu7kBUMIWWIphcAJ4AZABAJgB3gSgAeEnqgEJMi0xLjcuMy4yuAEMyAEA-AEBmAIHoALOEsICChAAGLADGNYEGEfCAggQABiiBBiJBcICBhAAGAcYHsICCxAAGIAEGJECGIoFwgIFEAAYgATCAggQABgHGAgYHsICCxAAGIAEGIYDGIoFmAMAiAYBkAYHkgcJMi4zLTEuMy4xoAe3TLIHBzMtMS4zLjG4B7kSwgcHMi0xLjUuMcgHZQ&sclient=gws-wiz-serp"
+                  >Visit website for further information</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Deosai -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card spot-card h-100">
+              <img
+                src="assets/images/Deosai National park.jpg"
+                alt="Deosai National Park"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Deosai National Park</h5>
+                <p class="small">
+                  Known as the ‘Land of Giants’ — lush plains, wildflowers, and
+                  clear skies for stargazing.
+                </p>
+                <p class="rating">⭐ 4.6 / 5</p>
+                <p class="text-muted small">
+                  Timings: 6 AM – 6 PM | Entry: PKR 500
+                </p>
+                <a
+                  href="https://www.google.com/search?q=deosai+national+park+detailed+information&oq=deosai+national+park+detailed+information&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yDQgCEAAYhgMYgAQYigUyDQgDEAAYhgMYgAQYigUyDQgEEAAYhgMYgAQYigUyCggFEAAYgAQYogQyCggGEAAYgAQYogQyCggHEAAYgAQYogQyCggIEAAYgAQYogTSAQkxOTc4MWowajmoAgCwAgA&sourceid=chrome&ie=UTF-8"
+                  >Visit website for further information</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Rainbow lake -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card spot-card h-100">
+              <img
+                src="assets/images/Rainbow lake.jpg"
+                alt="Rainbow Lake Minimarg"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Rainbow Lake Minimarg</h5>
+                <p class="small">
+                  A hidden paradise with emerald waters surrounded by mountains.
+                  Peaceful and pristine.
+                </p>
+                <p class="rating">⭐ 4.9 / 5</p>
+                <p class="text-muted small">
+                  Timings: 8 AM – 6 PM | Entry: PKR 300
+                </p>
+                <a
+                  href="https://www.google.com/search?q=rainbow+lake+detailed+information&oq=rainbow+lake+detailed+informat&gs_lcrp=EgZjaHJvbWUqCQgBECEYChigATIGCAAQRRg5MgkIARAhGAoYoAEyCQgCECEYChigATIHCAMQIRiPAjIHCAQQIRiPAtIBCTE0NTA2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
+                  >Visit website for further information</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Nanga Parbat -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card spot-card h-100">
+              <img
+                src="assets/images/Nanga parbat.jpg"
+                alt="Nanga Parbat"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Nanga Parbat Base Camp</h5>
+                <p class="small">
+                  One of the world’s highest peaks — a destination for trekkers
+                  and nature lovers alike.
+                </p>
+                <p class="rating">⭐ 4.9 / 5</p>
+                <p class="text-muted small">
+                  Timings: Trekking season May–Sep | Permit required
+                </p>
+                <a
+                  href="https://www.google.com/search?q=nanga+parbat+detailed+information&oq=nanga+parbat+detailed+information&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRifBdIBCTI5NzEwajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
+                  >Visit website for further information</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Quick Info Section -->
+    <section class="info-section py-5 bg-light text-center">
+      <div class="container">
+        <h3 class="mb-3">Essential Travel Info</h3>
+        <p>
+          Best Season: May–September | Average Temperature: 15–25°C | Altitude:
+          1500–3500m
+        </p>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d417293.5625090185!2d74.1993698!3d35.920834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e68f51a7e43d7f%3A0xdbc454e8c7b7751a!2sGilgit-Baltistan!5e0!3m2!1sen!2s!4v1698436486234!5m2!1sen!2s"
+          width="100%"
+          height="300"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section py-5">
+      <div class="container">
+        <h3 class="section-title">Photo Gallery</h3>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <img
+              src="assets/images/hunza valley.jpg"
+              class="img-fluid rounded shadow-sm"
+              alt="Hunza"
+            />
+          </div>
+          <div class="col-6 col-md-3">
+            <img
+              src="assets/images/Khunjerab pass.jpg"
+              class="img-fluid rounded shadow-sm"
+              alt="Khunjerab Pass"
+            />
+          </div>
+          <div class="col-6 col-md-3">
+            <img
+              src="assets/images/phandar lake.jpg"
+              class="img-fluid rounded shadow-sm"
+              alt="Phandar Lake"
+            />
+          </div>
+          <div class="col-6 col-md-3">
+            <img
+              src="assets/images/sikardu valley.jpg"
+              class="img-fluid rounded shadow-sm"
+              alt="Skardu Valley"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section bg-white py-5 text-center">
+      <div class="container">
+        <h3 class="section-title">Travel Tips</h3>
+        <ul class="list-unstyled mt-3">
+          <li>
+            ✅ Carry warm clothing — weather changes quickly in the mountains.
+          </li>
+          <li>
+            🚗 Hire local guides for remote locations like Deosai or Minimarg.
+          </li>
+          <li>📱 Ensure offline maps and emergency contacts are saved.</li>
+          <li>💧 Bring reusable bottles and keep Gilgit Baltistan clean!</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="mt-5 py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div>
+          <strong>GilgitExplorer</strong>
+          <div class="small-muted">A friendly travel primer</div>
+        </div>
+        <div class="small">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

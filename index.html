@@ -18,10 +18,141 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Site CSS (keep or adapt to your existing file) -->
-    <link href="assets/css/indexstyle.css" rel="stylesheet" />
 
     <style>
+      /* ---------- Palette (single source of truth) ---------- */
+      :root {
+        --primary: #0b3d2e; /* glacier green */
+        --accent: #ffb703; /* sunrise amber */
+        --muted: #6b7280;
+        --bg: #f6fbfc;
+        --card: #ffffff;
+        --dark: #041e19;
+      }
+
+      /* Reset / base */
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        background: var(--bg);
+        color: var(--dark);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+      .lead {
+        font-weight: 500;
+        color: #ffffff;
+      }
+      .small-muted {
+        color: var(--muted);
+      }
+
+      /* NAVBAR */
+      .navbar-brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+      }
+      .navbar-brand.text-primary {
+        color: var(--primary) !important;
+      }
+      .nav-link {
+        color: var(--dark) !important;
+      }
+      .nav-link.active {
+        font-weight: 600;
+        color: var(--primary) !important;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 62vh;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        color: #fff;
+      }
+
+      /* NEW: wider header content wrapper (centered) */
+      .hero-inner {
+        width: 100%;
+        max-width: 1400px; /* <-- increased width */
+        margin: 0 auto;
+        padding: 0 1.25rem; /* breathing room at edges */
+      }
+      @media (min-width: 1600px) {
+        .hero-inner {
+          max-width: 1600px;
+        }
+      }
+
+      /* card-glow: the nicer polished variant (backdrop blur + border) */
+      .card-glow {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px) saturate(160%);
+        -webkit-backdrop-filter: blur(12px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 1rem;
+        color: #f8f9fa;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease-in-out;
+      }
+      .card-glow:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      }
+      .card-glow h1,
+      .card-glow p {
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Buttons */
+      .btn-accent {
+        background: var(--accent);
+        color: #071717;
+        border-radius: 10px;
+        font-weight: 600;
+        border: 0;
+      }
+      .btn-outline-accent {
+        border: 1px solid var(--accent);
+        background: transparent;
+        color: var(--accent);
+      }
+
+      /* Helpers */
+      .container-narrow {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      .img-overview {
+        width: 100%;
+        max-height: 360px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+
       /* small gallery grid */
       .gallery-grid {
         display: grid;
@@ -35,31 +166,8 @@
         border-radius: 8px;
         cursor: pointer;
       }
-      .itinerary ol {
-        padding-left: 1.2rem;
-      }
-      .badge-info {
-        background: #d77a61;
-        color: #fff;
-      }
-      .card-img-top {
-        height: 200px;
-        object-fit: cover;
-      }
-      .img-overview {
-        width: 100%;
-        max-height: 360px;
-        object-fit: cover;
-        border-radius: 8px;
-      }
-      .callout {
-        background: #eff7f6;
-        padding: 12px;
-        border-left: 4px solid #d77a61;
-        border-radius: 6px;
-      }
 
-      /* NEW: site navigation cards */
+      /* Site navigation cards */
       .site-nav {
         margin: 2.25rem 0;
       }
@@ -78,6 +186,7 @@
         transition: transform 0.16s ease, box-shadow 0.16s ease;
         display: flex;
         flex-direction: column;
+        background: var(--card);
       }
       .site-card:hover {
         transform: translateY(-6px);
@@ -104,50 +213,191 @@
       .site-card h5 {
         margin: 0;
         font-weight: 700;
-        color: #223843;
+        color: var(--primary);
       }
       .site-card p {
         margin: 6px 0 0;
-        color: #5f6368;
+        color: var(--muted);
         font-size: 0.92rem;
       }
       .site-card a {
         position: absolute;
         inset: 0;
         z-index: 3;
-        text-indent: -9999px; /* full-card link for accessibility */
+        text-indent: -9999px;
       }
 
-      /* small responsive tweak for sidebar spacing */
+      /* Info callout (updated to use primary as subtle tint) */
+      .callout {
+        background: rgba(11, 61, 46, 0.06);
+        padding: 12px;
+        border-left: 4px solid var(--primary);
+        border-radius: 6px;
+        color: var(--dark);
+      }
+
+      /* Cards, spots & footer */
+      .spot-card {
+        border: none;
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+      }
+      .spot-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(2, 20, 22, 0.06);
+      }
+      .section-title {
+        color: var(--primary);
+      }
+      footer {
+        background: var(--dark);
+        color: rgba(223, 247, 239, 0.95); /* soft off-white for body text */
+        padding-top: 3rem;
+        padding-bottom: 1.25rem;
+      }
+
+      /* Footer headings */
+      .footer h5 {
+        font-family: "Playfair Display", serif;
+        color: var(--card);
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      /* Footer links */
+      .footer a {
+        display: block;
+        line-height: 1.8;
+        color: rgba(
+          223,
+          247,
+          239,
+          0.95
+        ); /* match paragraph color for consistency */
+        text-decoration: none;
+      }
+      .footer a:hover,
+      .footer a:focus {
+        color: var(--accent);
+        text-decoration: underline;
+        outline: none;
+      }
+
+      /* Paragraphs in footer */
+      .footer p,
+      .footer .small {
+        line-height: 1.6;
+        margin-bottom: 0;
+        color: rgba(223, 247, 239, 0.92);
+      }
+
+      /* Accent icons */
+      .footer i,
+      .footer .bi {
+        color: var(--accent);
+        font-size: 1.15rem;
+        vertical-align: middle;
+      }
+
+      /* subtle rule */
+      .footer hr {
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+
+      /* layout helper to vertically align columns */
+      .footer .footer-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 220px;
+      }
+
+      /* social links */
+      .footer .social-icons a {
+        font-size: 0.95rem;
+        color: rgba(223, 247, 239, 0.95);
+      }
+      .footer .social-icons a:hover {
+        color: var(--accent);
+      }
+
+      /* Map helper */
+      .map-wrap iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        border: 0;
+        border-radius: 8px;
+      }
+
+      /* Practical section specific styles */
+      #practical .feature {
+        background: var(--card);
+        border-radius: 10px;
+        padding: 12px;
+        box-shadow: 0 8px 20px rgba(2, 20, 22, 0.06);
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      #practical .feature h6 {
+        margin: 0 0 6px 0;
+        color: var(--primary);
+        font-size: 1rem;
+      }
+      #practical .feature p {
+        margin: 0;
+        color: #243434;
+        font-size: 0.92rem;
+      }
+      #practical .feature .icon {
+        flex: 0 0 36px;
+        width: 36px;
+        height: 36px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 8px;
+        background: rgba(11, 61, 46, 0.06);
+      }
+      #practical .checklist {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        color: var(--dark);
+      }
+      #practical .checklist li {
+        margin-bottom: 0.35rem;
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+      #practical .quick-badge {
+        background: var(--primary);
+        color: var(--card);
+        font-weight: 600;
+        font-size: 0.78rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 0.5rem;
+      }
+
+      /* Responsive tweaks */
       @media (max-width: 991px) {
         .img-overview {
           max-height: 260px;
         }
       }
-
-      /* small helpers used elsewhere */
-      .small-muted {
-        color: #6b6f72;
-      }
-      .btn-accent {
-        background: #d77a61;
-        color: #fff;
-        border: none;
-      }
-      .btn-outline-accent {
-        border: 1px solid #d77a61;
-        color: #fff;
-        background: transparent;
-      }
-      .card-glow {
-        background: rgba(255, 255, 255, 0.06);
-        border-radius: 12px;
-        color: white;
+      @media (max-width: 767px) {
+        .hero {
+          min-height: 44vh;
+        }
+        /* keep hero-inner comfortable on smaller screens */
+        .hero-inner {
+          padding: 0 1rem;
+        }
       }
     </style>
   </head>
+
   <body>
-    <!-- NAV (same across all pages) -->
+    <!-- NAV -->
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
     >
@@ -172,10 +422,10 @@
               <a class="nav-link" href="history.html">History</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="touristspots.html">Tourist Spots</a>
+              <a class="nav-link" href="touristsspots.html">Tourist Spots</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="food.html">Food & Culture</a>
+              <a class="nav-link" href="food.html">Food & Agriculture</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact / Map</a>
@@ -199,7 +449,8 @@
         background-position: center;
       "
     >
-      <div class="container py-5">
+      <!-- widened, centered inner wrapper -->
+      <div class="hero-inner py-5">
         <div class="row align-items-center">
           <div class="col-lg-7">
             <div class="card-glow p-4">
@@ -308,40 +559,216 @@
               </p>
             </section>
 
+            <!-- ===== Updated Practical Information (themed) ===== -->
             <section id="practical" class="mb-4">
-              <h3>Practical Information</h3>
-              <div class="row">
-                <div class="col-md-6">
-                  <h6>Getting there</h6>
-                  <p class="small">
-                    Flights from Islamabad to Gilgit or long road journey via
-                    Karakoram Highway. Book flights early due to limited seats.
-                  </p>
+              <h3 class="mb-3">
+                Practical Information
+                <span class="quick-badge" style="margin-left: 0.5rem"
+                  >Quick tips</span
+                >
+              </h3>
+
+              <div class="row row-cols-1 row-cols-md-2 g-3 mb-3">
+                <!-- Getting there -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <!-- airplane / road icon -->
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M2 16v-2a4 4 0 0 1 4-4h1l3-5 3 5h4a4 4 0 0 1 4 4v2"
+                          stroke="var(--primary)"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M7 20h10"
+                          stroke="var(--muted)"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Getting there</h6>
+                      <p class="mb-0">
+                        Fly Islamabad → Gilgit for fastest access (limited
+                        seats). Scenic road option: Karakoram Highway — allow
+                        extra travel time for stops and occasional delays.
+                      </p>
+                      <div class="small text-muted" style="margin-top: 0.35rem">
+                        Tip: book flights 4–6 weeks ahead for peak season.
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <h6>Accommodation</h6>
-                  <p class="small">
-                    Range from guesthouses and homestays in Hunza to hotels in
-                    Gilgit. Peak season: July–Sept; book in advance.
-                  </p>
+
+                <!-- Accommodation -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3 11.5L12 4l9 7.5"
+                          stroke="var(--primary)"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5 21V12h14v9"
+                          stroke="var(--muted)"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Accommodation</h6>
+                      <p class="mb-0">
+                        From homestays in Hunza to mid-range hotels in Gilgit.
+                        Peak season (Jul–Sep) fills quickly — reserve early if
+                        you have fixed dates.
+                      </p>
+                      <div class="small text-muted" style="margin-top: 0.35rem">
+                        Pro-tip: homestays offer local meals and warm
+                        hospitality.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Health & Altitude -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 2v10"
+                          stroke="var(--primary)"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M6 22v-6a6 6 0 0 1 12 0v6"
+                          stroke="var(--muted)"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Health & altitude</h6>
+                      <p class="mb-0">
+                        Acclimatise slowly: rest on arrival and avoid heavy
+                        exertion for 24–48 hrs. Stay hydrated and carry basic
+                        altitude meds if you're prone to AMS.
+                      </p>
+                      <div class="small text-muted" style="margin-top: 0.35rem">
+                        If symptoms persist, descend and seek local medical
+                        help.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Money & Connectivity -->
+                <div class="col">
+                  <div class="feature">
+                    <div class="icon" aria-hidden="true">
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect
+                          x="2"
+                          y="7"
+                          width="20"
+                          height="14"
+                          rx="2"
+                          stroke="var(--primary)"
+                          stroke-width="1.6"
+                        />
+                        <path
+                          d="M7 11h10"
+                          stroke="var(--muted)"
+                          stroke-width="1.2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h6>Money & connectivity</h6>
+                      <p class="mb-0">
+                        ATMs are in larger towns but rare in small villages —
+                        carry cash for excursions. Mobile signal is patchy in
+                        remote valleys; download offline maps before heading
+                        out.
+                      </p>
+                      <div class="small text-muted" style="margin-top: 0.35rem">
+                        Local prepaid SIMs improve coverage in towns.
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="row mt-2">
-                <div class="col-md-6">
-                  <h6>Health & Altitude</h6>
-                  <p class="small">
-                    Acclimatise slowly, stay hydrated and avoid strenuous
-                    activity on arrival. Seek local advice for high-altitude
-                    treks.
-                  </p>
-                </div>
-                <div class="col-md-6">
-                  <h6>Money & Connectivity</h6>
-                  <p class="small">
-                    ATMs limited in smaller towns — carry cash. Mobile
-                    connectivity is patchy in valleys; pre-download maps.
-                  </p>
+              <!-- Checklist + Callout -->
+              <div
+                class="d-flex flex-column flex-md-row gap-3 align-items-start"
+              >
+                <ul class="checklist mb-0" style="min-width: 260px">
+                  <li>
+                    <strong
+                      style="
+                        color: var(--primary);
+                        display: block;
+                        margin-bottom: 0.35rem;
+                      "
+                      >Packing checklist</strong
+                    >
+                  </li>
+                  <li>Warm layers & waterproof jacket</li>
+                  <li>Good hiking shoes & socks</li>
+                  <li>Sunscreen, sunglasses, hat</li>
+                  <li>Reusable water bottle, snacks & first-aid</li>
+                  <li>Cash for remote areas / small purchases</li>
+                </ul>
+
+                <div class="callout" style="flex: 1">
+                  <strong>Safety note</strong>
+                  <div class="small" style="margin-top: 0.4rem">
+                    Mountain weather can change rapidly — check local forecasts
+                    and road conditions. For high-altitude treks hire a local
+                    guide, share your itinerary, and carry a charged phone /
+                    power bank.
+                  </div>
                 </div>
               </div>
             </section>
@@ -410,7 +837,7 @@
               <p class="small text-muted mt-2">Click images to enlarge.</p>
             </section>
 
-            <!-- NEW: Site navigation cards (links to other pages) -->
+            <!-- Site navigation cards -->
             <section id="site-nav" class="site-nav mb-4">
               <h3>Explore the site</h3>
               <p class="small text-muted">
@@ -418,7 +845,6 @@
               </p>
 
               <div class="site-nav-grid">
-                <!-- History -->
                 <article
                   class="site-card"
                   role="article"
@@ -435,7 +861,6 @@
                   <a href="history.html" title="History — Gilgit">History</a>
                 </article>
 
-                <!-- Tourist Spots -->
                 <article
                   class="site-card"
                   role="article"
@@ -454,7 +879,6 @@
                   >
                 </article>
 
-                <!-- Food & Culture -->
                 <article
                   class="site-card"
                   role="article"
@@ -465,18 +889,17 @@
                     alt="Apricot jam from Hunza"
                   />
                   <div class="card-body">
-                    <h5 id="nav-food">Food & Culture</h5>
+                    <h5 id="nav-food">Food & Agriculture</h5>
                     <p>
                       Local dishes, festivals and agricultural traditions of the
                       region.
                     </p>
                   </div>
-                  <a href="food.html" title="Food & Culture — Gilgit"
-                    >Food & Culture</a
+                  <a href="food.html" title="Food & Agriculture — Gilgit"
+                    >Food & Agriculture</a
                   >
                 </article>
 
-                <!-- Contact -->
                 <article
                   class="site-card"
                   role="article"
@@ -499,6 +922,7 @@
             <section id="faq" class="mb-4">
               <h3>Frequently Asked Questions</h3>
               <div class="accordion" id="faqAccordion">
+                <!-- Ten accordion items (kept from your original) -->
                 <!-- 1 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqOne">
@@ -524,7 +948,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 2 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqTwo">
@@ -550,7 +973,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 3 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqThree">
@@ -576,7 +998,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 4 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqFour">
@@ -601,7 +1022,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 5 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqFive">
@@ -626,7 +1046,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 6 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqSix">
@@ -651,7 +1070,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 7 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqSeven">
@@ -676,7 +1094,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 8 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqEight">
@@ -701,7 +1118,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 9 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqNine">
@@ -727,7 +1143,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- 10 -->
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="faqTen">
@@ -756,7 +1171,6 @@
               </div>
             </section>
           </div>
-          <!-- end col-lg-8 -->
 
           <!-- Sidebar -->
           <aside class="col-lg-4">
@@ -788,14 +1202,6 @@
                 <li>Camera / smartphone for photography</li>
                 <li>Cash for small towns & remote areas</li>
               </ul>
-              <div class="mt-2">
-                <a
-                  class="btn btn-sm btn-outline-accent"
-                  href="assets/images/packing-checklist.pdf"
-                  download
-                  >Download PDF version</a
-                >
-              </div>
             </div>
 
             <div class="card p-3 mb-3 callout">
@@ -843,7 +1249,125 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-5 py-3 bg-light">
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3 mt-5">
+      <div class="container">
+        <div class="row text-start">
+          <!-- 1: About Gilgit -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">About Gilgit</h5>
+            <p class="small">
+              Gilgit is the heart of Gilgit-Baltistan, known for its scenic
+              beauty, mountain ranges, and rich cultural heritage. It’s the
+              gateway to the world’s highest peaks.
+            </p>
+          </div>
+
+          <!-- 2: Explore -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Explore</h5>
+            <ul class="list-unstyled small">
+              <li>
+                <a href="index.html" class="text-decoration-none">Home</a>
+              </li>
+              <li>
+                <a href="history.html" class="text-decoration-none">History</a>
+              </li>
+              <li>
+                <a href="spots.html" class="text-decoration-none"
+                  >Tourist Spots</a
+                >
+              </li>
+              <li>
+                <a href="food.html" class="text-decoration-none"
+                  >Food & Agriculture</a
+                >
+              </li>
+              <li>
+                <a href="contact.html" class="text-decoration-none"
+                  >Contact / Map</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- 3: Useful Links -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Useful Links</h5>
+            <ul class="list-unstyled small">
+              <li>
+                <a
+                  href="https://www.gilgitbaltistan.gov.pk"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Government of GB</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.pakistan.travel"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Tourism Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.ptdc.com.pk"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >PTDC Website</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Gilgit-Baltistan"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Wikipedia</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- 4: Contact & Social -->
+          <div class="col-lg-3 col-md-6 mb-4 footer-col">
+            <h5 class="text-uppercase mb-3">Contact & Follow</h5>
+            <p class="small mb-2">
+              📍 Gilgit City, Gilgit-Baltistan <br />
+              📞 +92 355 1234567 <br />
+              ✉️ info@gilgitexplorer.com
+            </p>
+            <div class="social-icons">
+              <a href="#" class="me-3 text-decoration-none"
+                ><i class="bi bi-facebook"></i> Facebook</a
+              >
+              <a href="#" class="me-3 text-decoration-none"
+                ><i class="bi bi-instagram"></i> Instagram</a
+              >
+              <a href="#" class="text-decoration-none"
+                ><i class="bi bi-twitter"></i> Twitter</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-light" />
+        <div class="d-flex justify-content-between align-items-center small">
+          <div><strong>GilgitExplorer</strong></div>
+          <div>
+            ©
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <footer class="mt-5 py-3">
       <div class="container d-flex justify-content-between align-items-center">
         <div>
           <strong>GilgitExplorer</strong>
@@ -856,7 +1380,7 @@
           </script>
         </div>
       </div>
-    </footer>
+    </footer> -->
 
     <!-- Image modal for gallery -->
     <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
@@ -911,10 +1435,8 @@
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
-
     <script>
-      // Simple gallery modal logic (guarded)
+      // Simple gallery modal logic
       document.querySelectorAll(".gallery-grid img").forEach((img) => {
         img.addEventListener("click", (e) => {
           const src =
@@ -927,19 +1449,15 @@
         });
       });
 
-      // Make site-card keyboard-accessible
+      // Make site-card keyboard-accessible and clickable
       document.querySelectorAll(".site-card").forEach((card) => {
         card.tabIndex = 0;
         card.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             const link = card.querySelector("a");
-            if (link) {
-              // follow link (opens same tab)
-              window.location.href = link.getAttribute("href");
-            }
+            if (link) window.location.href = link.getAttribute("href");
           }
         });
-        // allow click anywhere
         card.addEventListener("click", () => {
           const link = card.querySelector("a");
           if (link) window.location.href = link.getAttribute("href");
