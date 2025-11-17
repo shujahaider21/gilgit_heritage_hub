@@ -46,14 +46,14 @@
       }
 
       /* NAVBAR (copied from index + palette) */
-      .navbar {
+      /* .navbar {
         background: var(--card);
         box-shadow: 0 6px 18px rgba(10,20,18,0.04);
       }
       .navbar-brand { color: var(--primary) !important; font-weight:700; }
       .nav-link { color: rgba(0,0,0,0.65); }
       .nav-link:hover { color: var(--accent) !important; }
-      .nav-link.active { color: var(--accent) !important; font-weight:600; }
+      .nav-link.active { color: var(--accent) !important; font-weight:600; } */
 
       /* HERO */
       .hero-section{
@@ -120,24 +120,43 @@
 
   <body>
     <!-- NAVBAR (same across all pages) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+   <nav
+      class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
+    >
       <div class="container">
-        <a class="navbar-brand" href="index.html">GilgitExplorer</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <a class="navbar-brand text-primary fw-bold" href="index.html"
+          >GilgitExplorer</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="history.html">History</a></li>
-            <li class="nav-item"><a class="nav-link" href="touristspots.html">Tourist Spots</a></li>
-            <li class="nav-item"><a class="nav-link" href="food.html">Food & Culture</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact / Map</a></li>
+            <li class="nav-item">
+              <a class="nav-link " href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="history.html">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="touristspots.html">Tourist Spots</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="food.html">Food & Culture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact / Map</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
+
 
     <!-- HERO -->
     <section class="hero-section">
@@ -157,7 +176,7 @@
             <div class="timeline-content">
               <h4>Ancient Era</h4>
               <p>Buddhism flourished in the region; monasteries and rock carvings show the passage of pilgrims along ancient routes.</p>
-              <img src="downloads/images/Baltit Fort" alt="Buddhist stupa" class="img-fluid rounded mt-3" />
+              <img src="assets/images/Baltit Fort.jpeg" alt="Buddhist stupa" class="img-fluid rounded mt-3" />
             </div>
           </div>
 
@@ -165,7 +184,7 @@
             <div class="timeline-content">
               <h4>Medieval Period</h4>
               <p>Altit and Baltit forts developed as important hilltop strongholds; local dynasties shaped regional architecture.</p>
-              <img src="assets/images/fort-heritage.jpg" alt="Hill fort" class="img-fluid rounded mt-3" />
+              <img src="assets/images/altit.jpeg" alt="Hill fort" class="img-fluid rounded mt-3" />
             </div>
           </div>
 
@@ -173,7 +192,7 @@
             <div class="timeline-content">
               <h4>Modern Era</h4>
               <p>Integration into Pakistan and the arrival of modern infrastructure widened educational and tourism opportunities.</p>
-              <img src="assets/images/modern-gilgit.jpg" alt="Modern Gilgit" class="img-fluid rounded mt-3" />
+              <img src="assets/images/gilgit-overview.webp" alt="Modern Gilgit" class="img-fluid rounded mt-3" />
             </div>
           </div>
         </div>
@@ -186,7 +205,7 @@
         <div class="row g-4">
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/hunza-village.jpg" alt="Hunza village" class="card-img-top" />
+              <img src="assets/images/hunzavalley.jpg" alt="Hunza village" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">Hunza Valley</h5>
                 <p class="card-text">Terraced orchards and wooden architecture define Hunza's charm.</p>
@@ -197,7 +216,7 @@
 
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/traditional-crafts.jpg" alt="Traditional crafts" class="card-img-top" />
+              <img src="assets/images/traditional dress.jpeg" alt="Traditional crafts" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">Traditional Crafts</h5>
                 <p class="card-text">Embroidery, woodwork and gemstones are local specialties.</p>
@@ -208,7 +227,7 @@
 
           <div class="col-md-4">
             <div class="card">
-              <img src="assets/images/festival.jpg" alt="Festival" class="card-img-top" />
+              <img src="assets/images/Festival culture.jpeg" alt="Festival" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">Festivals</h5>
                 <p class="card-text">Navroz, polo matches and seasonal fairs celebrate local life.</p>
