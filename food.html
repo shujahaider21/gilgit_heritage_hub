@@ -147,6 +147,37 @@
           height: 160px;
         }
       }
+
+      /* NEW: hero styles (inline-style used for image, but ensure spacing & text look right) */
+      .hero {
+        background-image: linear-gradient(
+            180deg,
+            rgba(11, 61, 46, 0.62),
+            rgba(4, 14, 12, 0.2)
+          ),
+          url("assets/images/food-hero.jpg");
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 8rem 1rem; /* increased height */
+        text-align: center;
+      }
+
+      .hero .hero-inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.25rem;
+        margin: 0 0 0.5rem;
+      }
+      .hero p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.95);
+      }
     </style>
   </head>
 
@@ -188,6 +219,33 @@
         </div>
       </div>
     </nav>
+
+    <!-- HERO (added; uses same style as other pages, image from assets/images/homehero.jpg) -->
+    <header
+      class="hero"
+      style="
+        background-image: linear-gradient(
+            180deg,
+            rgba(11, 61, 46, 0.55),
+            rgba(2, 20, 22, 0.25)
+          ),
+          url('assets/images/food-hero.jpg');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="hero-inner">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <h1 class="fw-bold">Food & Agriculture of Gilgit</h1>
+            <p class="small-muted">
+              Local produce, traditional recipes and harvest culture — a taste
+              of mountain life.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <main class="py-5">
       <div class="container">
